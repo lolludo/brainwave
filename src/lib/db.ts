@@ -10,8 +10,19 @@ export interface User {
     password: string; // Storing plain text for demo purposes as requested
     name: string;
     subjects: string[];
-    timetable?: { subjects: any[] }; // Uses the new nested structure
-    files: any[];
+    timetable?: { subjects: any[] };
+    files: FileRecord[];
+}
+
+export interface FileRecord {
+    id: string;
+    name: string;
+    size: number;
+    type: string;
+    subject: string;
+    uploadDate: string;
+    mediaId?: string;
+    parsed?: boolean;
 }
 
 export interface DB {

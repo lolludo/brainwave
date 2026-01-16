@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 export default function FilesPage() {
     const router = useRouter();
     const [user, setUser] = useState<any>(null);
-    const [activeTab, setActiveTab] = useState<'upload' | 'view'>('upload');
     const [uploadType, setUploadType] = useState<'timetable' | 'resource'>('resource');
     const [selectedSubject, setSelectedSubject] = useState('');
     const [newSubject, setNewSubject] = useState('');
@@ -14,6 +13,12 @@ export default function FilesPage() {
     const [loading, setLoading] = useState(false);
     const [isCreatingSubject, setIsCreatingSubject] = useState(false);
     const [subjects, setSubjects] = useState<string[]>([]);
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+    // Status Log State
+    const [statusLog, setStatusLog] = useState<string[]>([]);
+    const [showStatusModal, setShowStatusModal] = useState(false);
+    const addToLog = (msg: string) => setStatusLog(prev => [...prev, msg]);
 
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
@@ -41,11 +46,6 @@ export default function FilesPage() {
             console.error("Failed to fetch data", e);
         }
     };
-
-    const [statusLog, setStatusLog] = useState<string[]>([]);
-    const [showStatusModal, setShowStatusModal] = useState(false);
-
-    const addToLog = (msg: string) => setStatusLog(prev => [...prev, msg]);
 
     const handleAnalyze = async (fileId: string, fileName: string) => {
         setStatusLog([]);
@@ -90,47 +90,70 @@ export default function FilesPage() {
         }
     };
 
-    const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (!file || !user) return;
+    // --- NEW HANDLERS ---
+    const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files?.[0]) {
+            setSelectedFile(e.target.files[0]);
+        }
+    };
+
+    const handleUploadAndParse = async () => {
+        if (!selectedFile || !user) return;
 
         setStatusLog([]);
-        // We only show modal if user wants, or we can use a Toast. 
-        // For Step 1 (Upload), maybe just a simple generic loading?
-        // User asked for "Upload then Parse". 
-        // Let's show a text "Uploading..."
+        if (uploadType === 'timetable') {
+            setShowStatusModal(true);
+        }
 
         const formData = new FormData();
-        formData.append('file', file);
+        formData.append('file', selectedFile);
         formData.append('username', user.username);
 
         let type = 'resource';
-        if (file.name.toLowerCase().includes('tim') || file.name.toLowerCase().includes('sch')) {
+        const lowerName = selectedFile.name.toLowerCase();
+        if (lowerName.includes('time') || lowerName.includes('schedule') || lowerName.includes('tt') || uploadType === 'timetable') {
             type = 'timetable';
         }
         formData.append('type', type);
 
         try {
             setLoading(true);
+            addToLog(`Uploading ${selectedFile.name}...`);
+
             const res = await fetch('/api/files/upload', { method: 'POST', body: formData });
+
+            if (!res.ok) {
+                const errText = await res.text();
+                throw new Error(errText);
+            }
+
             const data = await res.json();
 
-            if (res.ok) {
-                let msg = "File Uploaded. ";
-                if (data.file.mediaId) msg += "Ready for Analysis.";
-                alert(msg);
+            if (data.file) {
+                addToLog('✅ Upload Success.');
 
-                // Refresh List
-                const listRes = await fetch(`/api/files?username=${user.username}`);
-                const listData = await listRes.json();
-                setFiles(listData.files);
+                if (type === 'timetable' && data.file.mediaId) {
+                    addToLog('🚀 Triggering AI Analysis...');
+                    // Automatically call analyze since user clicked "Parse"
+                    await handleAnalyze(data.file.id, data.file.name);
+                } else {
+                    alert("Uploaded successfully!");
+                    // Refresh List
+                    const listRes = await fetch(`/api/files?username=${user.username}`);
+                    const listData = await listRes.json();
+                    setFiles(listData.files);
+                }
             } else {
-                alert('Upload failed.');
+                alert('Upload failed: ' + (data.message || 'Unknown error'));
             }
-        } catch (e) {
-            alert('Error uploading.');
+        } catch (e: any) {
+            alert('Error: ' + e.message);
+            console.error(e);
         } finally {
             setLoading(false);
+            setSelectedFile(null);
+            const input = document.getElementById('file-upload') as HTMLInputElement;
+            if (input) input.value = '';
         }
     };
 
@@ -181,8 +204,45 @@ export default function FilesPage() {
 
     return (
         <div style={{ animation: 'fadeUp 0.6s ease-out' }}>
+            {/* Status Modal */}
+            {showStatusModal && (
+                <div style={{
+                    position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+                    background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
+                }}>
+                    <div style={{
+                        background: 'var(--bg-secondary)', padding: '24px', borderRadius: '12px', width: '400px',
+                        boxShadow: '0 4px 20px rgba(0,0,0,0.2)', color: 'var(--text-primary)'
+                    }}>
+                        <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '16px' }}>AI Processing Status</h3>
+                        <div style={{
+                            background: 'var(--bg-primary)', padding: '12px', borderRadius: '8px',
+                            height: '200px', overflowY: 'auto', fontSize: '14px', fontFamily: 'monospace',
+                            border: '1px solid var(--glass-border)'
+                        }}>
+                            {statusLog.map((log, i) => (
+                                <div key={i} style={{ marginBottom: '4px' }}>{log}</div>
+                            ))}
+                            {loading && <div style={{ color: 'var(--accent-primary)', marginTop: '8px' }}>Processing...</div>}
+                        </div>
+                        <div style={{ marginTop: '16px', textAlign: 'right' }}>
+                            <button
+                                onClick={() => setShowStatusModal(false)}
+                                disabled={loading}
+                                style={{
+                                    padding: '8px 16px', background: 'var(--bg-tertiary)', border: 'none',
+                                    borderRadius: '6px', cursor: loading ? 'not-allowed' : 'pointer', color: 'var(--text-primary)'
+                                }}
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <header style={{ marginBottom: '32px' }}>
-                <h1 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '8px' }}>File Intelligence</h1>
+                <h1 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '8px', color: 'var(--text-primary)' }}>File Intelligence</h1>
                 <p style={{ color: 'var(--text-secondary)' }}>Upload timetables to generate academic state, or organize notes by subject.</p>
             </header>
 
@@ -212,114 +272,117 @@ export default function FilesPage() {
                 </button>
             </div>
 
-            {/* Upload Zone */}
+            {/* Upload Zone (Redesigned) */}
             <div style={{
                 background: 'var(--bg-secondary)',
-                border: '2px dashed var(--glass-border)',
-                borderRadius: 'var(--radius-lg)',
-                padding: '48px',
-                textAlign: 'center',
+                border: '1px solid var(--glass-border)',
+                borderRadius: '8px',
+                padding: '32px',
                 marginBottom: '40px',
-                transition: 'all 0.2s'
+                boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
             }}>
                 <div style={{ marginBottom: '24px' }}>
-                    <div style={{
-                        width: '64px', height: '64px', background: 'var(--bg-tertiary)',
-                        borderRadius: '50%', margin: '0 auto 16px', display: 'flex', alignItems: 'center', justifyContent: 'center'
-                    }}>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                    </div>
-                    <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '8px' }}>
-                        {uploadType === 'timetable' ? 'Upload Timetable / Schedule' : 'Upload Notes, PDFs, or Slides'}
+                    <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px', color: 'var(--text-primary)' }}>
+                        {uploadType === 'timetable' ? 'Upload Timetable' : 'Upload Resources'}
                     </h3>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '14px', maxWidth: '400px', margin: '0 auto' }}>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
                         {uploadType === 'timetable'
-                            ? 'System will parse this file to extract your subjects and update your academic state.'
-                            : 'Select a subject below to tag this file correctly.'}
+                            ? 'Upload a file (PDF, PNG, JPG). The AI will parse it automatically.'
+                            : 'Upload notes or slides. Select a subject to organize them.'}
                     </p>
                 </div>
 
-                {uploadType === 'resource' && (
-                    <div style={{ marginBottom: '24px' }}>
-                        <div style={{ marginBottom: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '14px', fontWeight: 500 }}>
-                            <label>Select Subject</label>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    {/* Native-like File Input Wrapper */}
+                    <div style={{
+                        border: '1px solid var(--glass-border)',
+                        padding: '10px',
+                        borderRadius: '6px',
+                        background: 'white',
+                        display: 'flex',
+                        alignItems: 'center'
+                    }}>
+                        <input
+                            type="file"
+                            id="file-upload"
+                            onChange={handleFileSelect}
+                            style={{ flex: 1 }}
+                        />
+                    </div>
+
+                    {/* Subject Selector for Resources */}
+                    {uploadType === 'resource' && (
+                        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                            <select
+                                value={selectedSubject}
+                                onChange={(e) => setSelectedSubject(e.target.value)}
+                                style={{
+                                    padding: '12px', borderRadius: '6px', border: '1px solid var(--glass-border)',
+                                    background: 'white', color: 'var(--text-primary)', flex: 1
+                                }}
+                            >
+                                {subjects.length > 0 ? subjects.map(s => <option key={s} value={s}>{s}</option>) : <option value="">No subjects found</option>}
+                                <option value="">-- General / Auto-Detect --</option>
+                            </select>
                             <button
                                 onClick={() => setIsCreatingSubject(!isCreatingSubject)}
-                                style={{ background: 'none', border: 'none', color: 'var(--accent-primary)', cursor: 'pointer', fontSize: '12px', textDecoration: 'underline' }}
+                                style={{ fontSize: '12px', color: 'var(--accent-primary)', background: 'none', border: 'none', cursor: 'pointer', whiteSpace: 'nowrap' }}
                             >
-                                {isCreatingSubject ? 'Cancel' : '+ Create New'}
+                                {isCreatingSubject ? 'Cancel' : '+ New Subject'}
                             </button>
                         </div>
+                    )}
 
-                        {isCreatingSubject ? (
-                            <div style={{ display: 'flex', justifyContent: 'center', gap: '8px' }}>
-                                <input
-                                    type="text"
-                                    placeholder="e.g. Artificial Intelligence"
-                                    value={newSubject}
-                                    onChange={e => setNewSubject(e.target.value)}
-                                    style={{
-                                        padding: '10px', borderRadius: 'var(--radius-md)', border: '1px solid var(--glass-border)',
-                                        background: 'var(--bg-primary)', width: '200px', color: 'var(--text-primary)'
-                                    }}
-                                />
-                                <button
-                                    onClick={handleCreateSubject}
-                                    style={{
-                                        padding: '10px 16px', borderRadius: 'var(--radius-md)', background: 'var(--accent-secondary)',
-                                        color: 'white', border: 'none', cursor: 'pointer'
-                                    }}
-                                >
-                                    Add
-                                </button>
-                            </div>
+                    {isCreatingSubject && (
+                        <div style={{ display: 'flex', gap: '8px' }}>
+                            <input
+                                value={newSubject}
+                                onChange={(e) => setNewSubject(e.target.value)}
+                                placeholder="New Subject Name"
+                                style={{ padding: '10px', flex: 1, borderRadius: '6px', border: '1px solid var(--glass-border)' }}
+                            />
+                            <button
+                                onClick={handleCreateSubject}
+                                style={{ padding: '10px 16px', background: 'var(--accent-secondary)', color: 'white', borderRadius: '6px', border: 'none', cursor: 'pointer' }}
+                            >
+                                Create
+                            </button>
+                        </div>
+                    )}
+
+                    {/* Big Action Button */}
+                    <button
+                        onClick={handleUploadAndParse}
+                        disabled={loading || !selectedFile}
+                        style={{
+                            width: '100%',
+                            padding: '14px',
+                            background: 'var(--accent-primary)',
+                            color: 'white',
+                            borderRadius: '6px',
+                            fontWeight: 600,
+                            fontSize: '15px',
+                            border: 'none',
+                            cursor: (loading || !selectedFile) ? 'not-allowed' : 'pointer',
+                            opacity: (loading || !selectedFile) ? 0.7 : 1,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
+                            transition: 'background 0.2s'
+                        }}
+                    >
+                        {loading ? (
+                            <span>Processing...</span>
                         ) : (
-                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                <select
-                                    value={selectedSubject}
-                                    onChange={(e) => setSelectedSubject(e.target.value)}
-                                    style={{
-                                        padding: '10px', borderRadius: 'var(--radius-md)', border: '1px solid var(--glass-border)',
-                                        background: 'var(--bg-primary)', width: '250px', color: 'var(--text-primary)'
-                                    }}
-                                >
-                                    {subjects.length > 0 ? subjects.map(s => <option key={s} value={s}>{s}</option>) : <option value="">No subjects found</option>}
-                                    <option value="">-- General / Auto-Detect --</option>
-                                </select>
-                                <p style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '4px' }}>
-                                    Leave as "General" to let AI infer subject from filename.
-                                </p>
-                            </div>
+                            <>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                {uploadType === 'timetable' ? 'Parse Timetable' : 'Upload Resource'}
+                            </>
                         )}
-                    </div>
-                )}
-
-                <input
-                    type="file"
-                    id="file-upload"
-                    style={{ display: 'none' }}
-                    onChange={handleFileUpload}
-                    disabled={loading}
-                />
-                <label
-                    htmlFor="file-upload"
-                    style={{
-                        display: 'inline-block',
-                        padding: '12px 24px',
-                        background: 'var(--accent-primary)',
-                        color: 'white',
-                        borderRadius: 'var(--radius-full)',
-                        fontWeight: 600,
-                        cursor: loading ? 'not-allowed' : 'pointer',
-                        opacity: loading ? 0.7 : 1
-                    }}
-                >
-                    {loading ? 'Processing...' : 'Select File'}
-                </label>
+                    </button>
+                </div>
             </div>
 
             {/* Files List */}
-            <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px' }}>Your Knowledge Base</h2>
+            <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px', color: 'var(--text-primary)' }}>Your Knowledge Base</h2>
             <div style={{ display: 'grid', gap: '16px' }}>
                 {files.length === 0 ? (
                     <div style={{ padding: '24px', textAlign: 'center', color: 'var(--text-muted)' }}>No files uploaded yet.</div>
@@ -356,6 +419,18 @@ export default function FilesPage() {
                                 <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
                                     {new Date(file.uploadDate).toLocaleDateString()}
                                 </div>
+                                {/* Analyze Button Trigger (Manual) */}
+                                {file.mediaId && !file.parsed && (
+                                    <button
+                                        onClick={() => handleAnalyze(file.id, file.name)}
+                                        style={{
+                                            background: 'var(--accent-primary)', color: '#fff',
+                                            padding: '6px 12px', borderRadius: '6px', fontSize: '12px', border: 'none', cursor: 'pointer'
+                                        }}
+                                    >
+                                        Analyze
+                                    </button>
+                                )}
                                 <button
                                     onClick={() => handleDelete(file.id)}
                                     style={{
