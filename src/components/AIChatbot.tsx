@@ -15,9 +15,10 @@ const AIChatbot = () => {
     return (
         <div style={{ height: '100%', width: '100%' }}>
             <OnDemandChatBot
-                apiKey="bFOOFKIcKN0bX6llErS1uX5JicrsJVdF"
+                apiKey={process.env.NEXT_PUBLIC_ONDEMAND_API_KEY || "bFOOFKIcKN0bX6llErS1uX5JicrsJVdF"}
                 botId="6969fd7c8b00a652c700df6d"
                 contextVariables={contextVariables}
+                mode="embedded"
             />
         </div>
     );

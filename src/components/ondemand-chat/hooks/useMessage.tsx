@@ -25,7 +25,7 @@ export const useMessage = (apiKey: string) => {
             message: input,
             author: "user",
             isFetching: false,
-            id: Date.now().toString(),
+            id: Date.now().toString() + Math.random().toString(36).substring(7),
             status: "complete",
         });
 
@@ -101,7 +101,14 @@ export const useMessage = (apiKey: string) => {
                             line !== "" &&
                             line !== "event:heartbeat" // PATCH: Filter out heartbeat events
                     )
-                    .map((line) => JSON.parse(line));
+                    .map((line) => {
+                        try {
+                            return JSON.parse(line);
+                        } catch (e) {
+                            return null;
+                        }
+                    })
+                    .filter((item) => item !== null);
 
                 for (const line of lines) {
                     if (

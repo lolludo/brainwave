@@ -5,102 +5,15 @@
       "username": "user 1",
       "password": "12345",
       "name": "Test Student",
-      "files": []
-    },
-    {
-      "id": "e701baa1-9c4a-4676-b0ae-93f3deb9bd18",
-      "username": "shdra",
-      "password": "12345",
-      "name": "shivendra",
-      "files": [],
-      "subjects": [],
-      "timetable": {
-        "subjects": []
-      }
-    },
-    {
-      "id": "a6cb73ba-f32a-414b-99de-d17b753bcddd",
-      "username": "fbberf;qwef;buieewrfu;bjqiqerfbujik;rfeqbuji;",
-      "password": "befuofbujiwrfqbuijnoqewfbuji;wefqbjn;",
-      "name": "uwfbewufbewfbuiewfui;bjewfq;ibu",
       "subjects": [],
       "files": []
     },
     {
-      "id": "08e50cbf-635c-43e6-976e-53b653581623",
-      "username": "obuiybioboui",
-      "password": "un90hbi",
-      "name": "houi",
-      "subjects": [],
-      "files": []
-    },
-    {
-      "id": "1296526c-6428-491b-a8cf-d7e22952fb5f",
-      "username": "ervvrearve3",
-      "password": "ervervqgegrqvw3ce",
-      "name": "DECECC",
-      "subjects": [],
-      "files": []
-    },
-    {
-      "id": "591b770f-c5bc-4fd3-bac0-2e2a93711720",
-      "username": "ervvrearvg5g5g5",
-      "password": "ervervqgegrqvw5gg5g",
-      "name": "g55gg5g5",
-      "subjects": [],
-      "files": []
-    },
-    {
-      "id": "5acc193d-c253-450a-a7c0-e916968f01bf",
-      "username": "ervvrearvgwrnefbniomniogrijnkbegrniu",
-      "password": "ervervqgegrqvwwgrnoegtrnioegtriojnniog",
-      "name": "engrjbegrbhjkigrhujkregfvhijknu",
-      "subjects": [],
-      "files": []
-    },
-    {
-      "id": "e7695ec1-c350-4fe4-8402-ededad2d16dd",
-      "username": "sidharthbharti463@gmail.com",
-      "password": "",
-      "name": "Sidharth Bharti",
-      "subjects": [],
-      "files": [
-        {
-          "id": "2dd88abd-e6e3-4511-9251-46772eb851da",
-          "name": "OIP.webp",
-          "size": 16918,
-          "type": "resource",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T15:32:06.131Z",
-          "mediaId": "/uploads/1768577526124-OIP.webp",
-          "parsed": false
-        },
-        {
-          "id": "9a7c9e6e-1236-42cd-a98d-aa195ac0edd6",
-          "name": "WhatsApp Image 2026-01-16 at 11.40.40 AM.jpeg",
-          "size": 69915,
-          "type": "resource",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T15:33:10.536Z",
-          "mediaId": "/uploads/1768577590530-WhatsApp_Image_2026-01-16_at_11.40.40_AM.jpeg",
-          "parsed": false
-        }
-      ]
-    },
-    {
-      "id": "2dec185c-49b1-41ed-8c5f-619358f9a721",
+      "id": "7fd0bd59-40bc-4ebb-8ebe-fe41238c456d",
       "username": "lolludo44@gmail.com",
       "password": "",
       "name": "Sidharth Bharti",
-      "subjects": [
-        "University Time Table",
-        "MATHEMATICS-I",
-        "PROGRAMMING FUNDAMENTALS",
-        "BASIC ELECTRONICS & COMMUNICATION ENGINEERING",
-        "COMPUTER AIDED ENGINEERING GRAPHICS-2",
-        "WEB DESIGNING",
-        "AS SELECTED"
-      ],
+      "subjects": [],
       "files": [
         {
           "id": "aa4ceb58-c8e2-4b11-8992-5333413257c8",
@@ -291,6 +204,381 @@
                 "end_time": "09:00",
                 "location": "null",
                 "subject": "AS SELECTED"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "bce2b4e4-b338-4bc3-a224-3f1e0df405e7",
+      "username": "shdra06@gmail.com",
+      "password": "",
+      "name": "Shivendra Prasad",
+      "subjects": [
+        "MATHEMATICS-I",
+        "COMPUTER AIDED ENGINEERING GRAPHICS-2",
+        "BASIC ELECTRONICS & COMMUNICATION ENGINEERING",
+        "PROGRAMMING FUNDAMENTALS",
+        "WEB DESIGNING"
+      ],
+      "files": [],
+      "timetable": {
+        "subjects": [
+          {
+            "name": "MATHEMATICS-I",
+            "classes": [
+              {
+                "day": "TUE",
+                "start_time": "12:00",
+                "end_time": "13:00",
+                "location": "PB-GF6",
+                "subject": "MATHEMATICS-I"
+              },
+              {
+                "day": "TUE",
+                "start_time": "13:00",
+                "end_time": "14:00",
+                "location": "PB-GF6",
+                "subject": "MATHEMATICS-I"
+              },
+              {
+                "day": "WED",
+                "start_time": "09:00",
+                "end_time": "10:00",
+                "location": "",
+                "subject": "MATHEMATICS-I"
+              },
+              {
+                "day": "WED",
+                "start_time": "15:00",
+                "end_time": "16:00",
+                "location": "PB-GF6",
+                "subject": "MATHEMATICS-I"
+              }
+            ]
+          },
+          {
+            "name": "COMPUTER AIDED ENGINEERING GRAPHICS-2",
+            "classes": [
+              {
+                "day": "MON",
+                "start_time": "09:00",
+                "end_time": "10:00",
+                "location": "LAB",
+                "subject": "COMPUTER AIDED ENGINEERING GRAPHICS-2"
+              },
+              {
+                "day": "MON",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "location": "",
+                "subject": "COMPUTER AIDED ENGINEERING GRAPHICS-2"
+              },
+              {
+                "day": "WED",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "location": "",
+                "subject": "COMPUTER AIDED ENGINEERING GRAPHICS-2"
+              }
+            ]
+          },
+          {
+            "name": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING",
+            "classes": [
+              {
+                "day": "MON",
+                "start_time": "12:00",
+                "end_time": "13:00",
+                "location": "",
+                "subject": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING"
+              },
+              {
+                "day": "THU",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "location": "",
+                "subject": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING"
+              },
+              {
+                "day": "THU",
+                "start_time": "16:00",
+                "end_time": "17:00",
+                "location": "LAB",
+                "subject": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING"
+              }
+            ]
+          },
+          {
+            "name": "PROGRAMMING FUNDAMENTALS",
+            "classes": [
+              {
+                "day": "MON",
+                "start_time": "13:00",
+                "end_time": "14:00",
+                "location": "",
+                "subject": "PROGRAMMING FUNDAMENTALS"
+              },
+              {
+                "day": "FRI",
+                "start_time": "12:00",
+                "end_time": "13:00",
+                "location": "",
+                "subject": "PROGRAMMING FUNDAMENTALS"
+              },
+              {
+                "day": "FRI",
+                "start_time": "13:00",
+                "end_time": "14:00",
+                "location": "LAB",
+                "subject": "PROGRAMMING FUNDAMENTALS"
+              }
+            ]
+          },
+          {
+            "name": "WEB DESIGNING",
+            "classes": [
+              {
+                "day": "TUE",
+                "start_time": "14:00",
+                "end_time": "15:00",
+                "location": "CS-103",
+                "subject": "WEB DESIGNING"
+              },
+              {
+                "day": "THU",
+                "start_time": "14:00",
+                "end_time": "15:00",
+                "location": "CS-103",
+                "subject": "WEB DESIGNING"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "33af6bba-4a6c-407a-bc2b-21cec9cac6c9",
+      "username": "shivendra080806@gmail.com",
+      "password": "",
+      "name": "shivendra",
+      "subjects": [
+        "CN Lab",
+        "TOC CS-204",
+        "CN CS-208",
+        "CSO CS-206",
+        "P&S CS202",
+        "DBMS CS-210",
+        "DBMS Lab"
+      ],
+      "files": [
+        {
+          "id": "74ebf935-ac72-42be-9d25-919e6f7cf48f",
+          "name": "172782.jpeg",
+          "size": 73848,
+          "type": "timetable",
+          "subject": "Timetable (Analyzed)",
+          "uploadDate": "2026-01-16T19:12:58.806Z",
+          "mediaId": "/uploads/1768590778799-172782.jpeg",
+          "parsed": true
+        }
+      ],
+      "timetable": {
+        "subjects": [
+          {
+            "name": "CN Lab",
+            "classes": [
+              {
+                "day": "MON",
+                "start_time": "10:00",
+                "end_time": "11:00",
+                "location": "IOT Lab",
+                "subject": "CN Lab(G1)"
+              },
+              {
+                "day": "TUE",
+                "start_time": "13:00",
+                "end_time": "14:00",
+                "location": "IOT Lab",
+                "subject": "CN Lab[CS208](G2)"
+              },
+              {
+                "day": "WED",
+                "start_time": "13:00",
+                "end_time": "15:00",
+                "location": "IOT Lab",
+                "subject": "CN Lab[CS208](G3)"
+              }
+            ]
+          },
+          {
+            "name": "TOC CS-204",
+            "classes": [
+              {
+                "day": "MON",
+                "start_time": "13:00",
+                "end_time": "14:00",
+                "location": "AB4-106",
+                "subject": "TOC CS-204"
+              },
+              {
+                "day": "TUE",
+                "start_time": "10:00",
+                "end_time": "11:00",
+                "location": "AB4-106",
+                "subject": "TOC CS-204"
+              },
+              {
+                "day": "WED",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "location": "AB4-106",
+                "subject": "TOC CS-204"
+              },
+              {
+                "day": "THUR",
+                "start_time": "13:00",
+                "end_time": "14:00",
+                "location": "AB4-416",
+                "subject": "TOC CS-204"
+              }
+            ]
+          },
+          {
+            "name": "CN CS-208",
+            "classes": [
+              {
+                "day": "MON",
+                "start_time": "14:00",
+                "end_time": "15:00",
+                "location": "AB4-106",
+                "subject": "CN CS-208"
+              },
+              {
+                "day": "TUE",
+                "start_time": "12:00",
+                "end_time": "13:00",
+                "location": "AB4-106",
+                "subject": "CN CS-208"
+              },
+              {
+                "day": "FRI",
+                "start_time": "9:00",
+                "end_time": "10:00",
+                "location": "AB4-106",
+                "subject": "CN CS-208"
+              }
+            ]
+          },
+          {
+            "name": "CSO CS-206",
+            "classes": [
+              {
+                "day": "MON",
+                "start_time": "15:00",
+                "end_time": "16:00",
+                "location": "AB4-106",
+                "subject": "CSO CS-206"
+              },
+              {
+                "day": "MON",
+                "start_time": "16:00",
+                "end_time": "17:00",
+                "location": "AB4-106",
+                "subject": "CSO CS-206"
+              },
+              {
+                "day": "TUE",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "location": "AB4-106",
+                "subject": "CSO CS-206"
+              },
+              {
+                "day": "FRI",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "location": "AB4-106",
+                "subject": "CSO CS-206"
+              }
+            ]
+          },
+          {
+            "name": "P&S CS202",
+            "classes": [
+              {
+                "day": "WED",
+                "start_time": "9:00",
+                "end_time": "10:00",
+                "location": "AB4-106",
+                "subject": "P&S CS202"
+              },
+              {
+                "day": "THUR",
+                "start_time": "14:00",
+                "end_time": "15:00",
+                "location": "AB4-416",
+                "subject": "P&S CS202"
+              },
+              {
+                "day": "FRI",
+                "start_time": "10:00",
+                "end_time": "11:00",
+                "location": "AB4-106",
+                "subject": "P&S CS202"
+              }
+            ]
+          },
+          {
+            "name": "DBMS CS-210",
+            "classes": [
+              {
+                "day": "WED",
+                "start_time": "10:00",
+                "end_time": "11:00",
+                "location": "AB4-106",
+                "subject": "DBMS CS-210"
+              },
+              {
+                "day": "THUR",
+                "start_time": "15:00",
+                "end_time": "16:00",
+                "location": "AB4-416",
+                "subject": "DBMS CS-210"
+              },
+              {
+                "day": "FRI",
+                "start_time": "12:00",
+                "end_time": "13:00",
+                "location": "AB4-106",
+                "subject": "DBMS CS-210"
+              }
+            ]
+          },
+          {
+            "name": "DBMS Lab",
+            "classes": [
+              {
+                "day": "WED",
+                "start_time": "13:00",
+                "end_time": "15:00",
+                "location": "IOT Lab",
+                "subject": "DBMS Lab[CS210] G3"
+              },
+              {
+                "day": "THUR",
+                "start_time": "10:00",
+                "end_time": "12:00",
+                "location": "AB4-106",
+                "subject": "DBMS Lab[CS210] G2"
+              },
+              {
+                "day": "FRI",
+                "start_time": "13:00",
+                "end_time": "15:00",
+                "location": "AB4-106",
+                "subject": "DBMS Lab G1"
               }
             ]
           }

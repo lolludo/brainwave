@@ -201,3 +201,20 @@
         opacity: 0.4;
     }
 }
+.ai-chat-container.embedded {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.chat-window.embedded {
+    width: 100%;
+    height: 100%;
+    box-shadow: none;
+    border-radius: 0;
+}
+

@@ -11,7 +11,7 @@ export const addMessage = (
         {
             message: "",
             isFetching: false,
-            id: Date.now().toString(),
+            id: Date.now().toString() + Math.random().toString(36).substring(7),
             author: "bot",
             status: "loading",
             ...message,
