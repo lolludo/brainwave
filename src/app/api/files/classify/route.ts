@@ -32,7 +32,13 @@ export async function POST(request: Request) {
             const buffer = await readFile(filePath);
             let ext = (filePath.split('.').pop() || 'jpeg').toLowerCase();
             if (ext === 'jpg') ext = 'jpeg';
+
+            // Allow PDF
             const mimeType = ext === 'pdf' ? 'application/pdf' : `image/${ext}`;
+
+            // Log for debug
+            console.log(`Classifying file properly: ${filePath} as ${mimeType}`);
+
             base64Data = `data:${mimeType};base64,${buffer.toString('base64')}`;
         } catch (e) {
             return NextResponse.json({ message: 'File read error' }, { status: 500 });

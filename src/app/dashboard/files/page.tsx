@@ -448,7 +448,7 @@ export default function FilesPage() {
                         <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
                             {uploadType === 'timetable'
                                 ? 'Upload a file (PDF, PNG, JPG). The AI will parse it automatically.'
-                                : 'Upload notes or slides. Select a subject to organize them.'}
+                                : 'Upload notes. AI will automatically classify them into subjects.'}
                         </p>
                     </div>
 
@@ -470,21 +470,6 @@ export default function FilesPage() {
                             />
                         </div>
 
-                        {uploadType === 'resource' && (
-                            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                                <select
-                                    value={selectedSubject}
-                                    onChange={(e) => setSelectedSubject(e.target.value)}
-                                    style={{
-                                        padding: '12px', borderRadius: '6px', border: '1px solid var(--glass-border)',
-                                        background: 'var(--bg-tertiary)', color: 'var(--text-primary)', flex: 1
-                                    }}
-                                >
-                                    {subjects.length > 0 ? subjects.map(s => <option key={s} value={s} style={{ background: '#333' }}>{s}</option>) : <option value="" style={{ background: '#333' }}>No subjects found</option>}
-                                    <option value="" style={{ background: '#333' }}>-- General / Auto-Detect --</option>
-                                </select>
-                            </div>
-                        )}
 
                         <button
                             onClick={handleUploadAndParse}
@@ -509,7 +494,7 @@ export default function FilesPage() {
                             ) : (
                                 <>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                                    {uploadType === 'timetable' ? 'Parse Timetable' : 'Upload Resource'}
+                                    {uploadType === 'timetable' ? 'Parse Timetable' : 'Classify with AI'}
                                 </>
                             )}
                         </button>

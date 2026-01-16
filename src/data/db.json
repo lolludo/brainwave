@@ -52,6 +52,16 @@
           "uploadDate": "2026-01-16T10:56:03.326Z",
           "mediaId": "/uploads/1768560963319-1.jpg",
           "parsed": false
+        },
+        {
+          "id": "d5f8b57e-5c5c-496b-8bd1-81369b3cb829",
+          "name": "ece assig 1 sem 1.pdf",
+          "size": 436992,
+          "type": "resource",
+          "subject": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING",
+          "uploadDate": "2026-01-16T11:10:06.751Z",
+          "mediaId": "/uploads/1768561806741-ece_assig_1_sem_1.pdf",
+          "parsed": false
         }
       ],
       "subjects": [
