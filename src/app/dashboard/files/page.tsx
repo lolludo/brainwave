@@ -215,6 +215,29 @@ export default function FilesPage() {
         }
     };
 
+    const handleDeleteSubject = async (subjectToDelete: string) => {
+        try {
+            const res = await fetch('/api/subjects/delete', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: user.username, subject: subjectToDelete })
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                setSubjects(data.subjects);
+                // Update local storage
+                const updatedUser = { ...user, subjects: data.subjects };
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+                setUser(updatedUser);
+            } else {
+                alert('Failed to delete subject');
+            }
+        } catch (e) {
+            alert('Error deleting subject');
+        }
+    };
+
     const handleCreateSubject = async () => {
         if (!newSubject.trim()) return;
         try {
@@ -240,6 +263,13 @@ export default function FilesPage() {
             alert('Failed to create subject');
         }
     };
+
+    // --- FILTER & NAVIGATION ---
+    const [currentFolder, setCurrentFolder] = useState<string | null>(null);
+
+    const filteredFiles = currentFolder
+        ? files.filter(f => f.subject === currentFolder)
+        : files.filter(f => !f.subject || !subjects.includes(f.subject));
 
     if (!user) return null;
 
@@ -283,152 +313,207 @@ export default function FilesPage() {
             )}
 
             <header style={{ marginBottom: '32px' }}>
-                <h1 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '8px', color: 'var(--text-primary)' }}>File Intelligence</h1>
+                <h1 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '8px', color: 'var(--text-primary)' }}>
+                    {currentFolder ? (
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <button
+                                onClick={() => setCurrentFolder(null)}
+                                style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-secondary)' }}
+                            >
+                                File Intelligence
+                            </button>
+                            <span style={{ color: 'var(--text-secondary)' }}>/</span>
+                            {currentFolder}
+                        </span>
+                    ) : 'File Intelligence'}
+                </h1>
                 <p style={{ color: 'var(--text-secondary)' }}>Upload timetables to generate academic state, or organize notes by subject.</p>
             </header>
 
-            {/* Toggle / Tabs */}
-            <div style={{ display: 'flex', gap: '20px', marginBottom: '32px', borderBottom: '1px solid var(--glass-border)', paddingBottom: '16px' }}>
-                <button
-                    onClick={() => setUploadType('timetable')}
-                    style={{
-                        background: 'none', border: 'none', cursor: 'pointer',
-                        fontSize: '16px', fontWeight: 600,
-                        color: uploadType === 'timetable' ? 'var(--accent-primary)' : 'var(--text-secondary)',
-                        opacity: uploadType === 'timetable' ? 1 : 0.7
-                    }}
-                >
-                    1. Update Timetable
-                </button>
-                <button
-                    onClick={() => setUploadType('resource')}
-                    style={{
-                        background: 'none', border: 'none', cursor: 'pointer',
-                        fontSize: '16px', fontWeight: 600,
-                        color: uploadType === 'resource' ? 'var(--accent-primary)' : 'var(--text-secondary)',
-                        opacity: uploadType === 'resource' ? 1 : 0.7
-                    }}
-                >
-                    2. Upload Resources
-                </button>
-            </div>
-
-            {/* Upload Zone (Redesigned) */}
-            <div style={{
-                background: 'var(--bg-secondary)',
-                border: '1px solid var(--glass-border)',
-                borderRadius: '8px',
-                padding: '32px',
-                marginBottom: '40px',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
-            }}>
-                <div style={{ marginBottom: '24px' }}>
-                    <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px', color: 'var(--text-primary)' }}>
-                        {uploadType === 'timetable' ? 'Upload Timetable' : 'Upload Resources'}
-                    </h3>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
-                        {uploadType === 'timetable'
-                            ? 'Upload a file (PDF, PNG, JPG). The AI will parse it automatically.'
-                            : 'Upload notes or slides. Select a subject to organize them.'}
-                    </p>
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                    {/* Native-like File Input Wrapper */}
-                    <div style={{
-                        border: '1px solid var(--glass-border)',
-                        padding: '10px',
-                        borderRadius: '6px',
-                        background: 'white',
-                        display: 'flex',
-                        alignItems: 'center'
-                    }}>
-                        <input
-                            type="file"
-                            id="file-upload"
-                            onChange={handleFileSelect}
-                            style={{ flex: 1 }}
-                        />
-                    </div>
-
-                    {/* Subject Selector for Resources */}
-                    {uploadType === 'resource' && (
-                        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                            <select
-                                value={selectedSubject}
-                                onChange={(e) => setSelectedSubject(e.target.value)}
-                                style={{
-                                    padding: '12px', borderRadius: '6px', border: '1px solid var(--glass-border)',
-                                    background: 'white', color: 'var(--text-primary)', flex: 1
-                                }}
-                            >
-                                {subjects.length > 0 ? subjects.map(s => <option key={s} value={s}>{s}</option>) : <option value="">No subjects found</option>}
-                                <option value="">-- General / Auto-Detect --</option>
-                            </select>
-                            <button
-                                onClick={() => setIsCreatingSubject(!isCreatingSubject)}
-                                style={{ fontSize: '12px', color: 'var(--accent-primary)', background: 'none', border: 'none', cursor: 'pointer', whiteSpace: 'nowrap' }}
-                            >
-                                {isCreatingSubject ? 'Cancel' : '+ New Subject'}
-                            </button>
-                        </div>
-                    )}
-
-                    {isCreatingSubject && (
-                        <div style={{ display: 'flex', gap: '8px' }}>
-                            <input
-                                value={newSubject}
-                                onChange={(e) => setNewSubject(e.target.value)}
-                                placeholder="New Subject Name"
-                                style={{ padding: '10px', flex: 1, borderRadius: '6px', border: '1px solid var(--glass-border)' }}
-                            />
-                            <button
-                                onClick={handleCreateSubject}
-                                style={{ padding: '10px 16px', background: 'var(--accent-secondary)', color: 'white', borderRadius: '6px', border: 'none', cursor: 'pointer' }}
-                            >
-                                Create
-                            </button>
-                        </div>
-                    )}
-
-                    {/* Big Action Button */}
+            {/* Toggle / Tabs (Only show at root) */}
+            {!currentFolder && (
+                <div style={{ display: 'flex', gap: '20px', marginBottom: '32px', borderBottom: '1px solid var(--glass-border)', paddingBottom: '16px' }}>
                     <button
-                        onClick={handleUploadAndParse}
-                        disabled={loading || !selectedFile}
+                        onClick={() => setUploadType('timetable')}
                         style={{
-                            width: '100%',
-                            padding: '14px',
-                            background: 'var(--accent-primary)',
-                            color: 'white',
-                            borderRadius: '6px',
-                            fontWeight: 600,
-                            fontSize: '15px',
-                            border: 'none',
-                            cursor: (loading || !selectedFile) ? 'not-allowed' : 'pointer',
-                            opacity: (loading || !selectedFile) ? 0.7 : 1,
-                            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
-                            transition: 'background 0.2s'
+                            background: 'none', border: 'none', cursor: 'pointer',
+                            fontSize: '16px', fontWeight: 600,
+                            color: uploadType === 'timetable' ? 'var(--accent-primary)' : 'var(--text-secondary)',
+                            opacity: uploadType === 'timetable' ? 1 : 0.7
                         }}
                     >
-                        {loading ? (
-                            <span>Processing...</span>
-                        ) : (
-                            <>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                                {uploadType === 'timetable' ? 'Parse Timetable' : 'Upload Resource'}
-                            </>
-                        )}
+                        1. Update Timetable
+                    </button>
+                    <button
+                        onClick={() => setUploadType('resource')}
+                        style={{
+                            background: 'none', border: 'none', cursor: 'pointer',
+                            fontSize: '16px', fontWeight: 600,
+                            color: uploadType === 'resource' ? 'var(--accent-primary)' : 'var(--text-secondary)',
+                            opacity: uploadType === 'resource' ? 1 : 0.7
+                        }}
+                    >
+                        2. Upload Resources
                     </button>
                 </div>
-            </div>
+            )}
+
+            {/* Upload Zone (Only show at root or if explicit action needed) */}
+            {!currentFolder && (
+                <div style={{
+                    background: 'var(--bg-secondary)',
+                    border: '1px solid var(--glass-border)',
+                    borderRadius: '8px',
+                    padding: '32px',
+                    marginBottom: '40px',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
+                }}>
+                    {/* ... Upload Implementation Reused ... */}
+                    <div style={{ marginBottom: '24px' }}>
+                        <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px', color: 'var(--text-primary)' }}>
+                            {uploadType === 'timetable' ? 'Upload Timetable' : 'Upload Resources'}
+                        </h3>
+                        <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
+                            {uploadType === 'timetable'
+                                ? 'Upload a file (PDF, PNG, JPG). The AI will parse it automatically.'
+                                : 'Upload notes or slides. Select a subject to organize them.'}
+                        </p>
+                    </div>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                        <div style={{
+                            border: '1px solid var(--glass-border)',
+                            padding: '10px',
+                            borderRadius: '6px',
+                            background: 'white',
+                            display: 'flex',
+                            alignItems: 'center'
+                        }}>
+                            <input
+                                type="file"
+                                id="file-upload"
+                                onChange={handleFileSelect}
+                                style={{ flex: 1 }}
+                            />
+                        </div>
+
+                        {uploadType === 'resource' && (
+                            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                                <select
+                                    value={selectedSubject}
+                                    onChange={(e) => setSelectedSubject(e.target.value)}
+                                    style={{
+                                        padding: '12px', borderRadius: '6px', border: '1px solid var(--glass-border)',
+                                        background: 'white', color: 'var(--text-primary)', flex: 1
+                                    }}
+                                >
+                                    {subjects.length > 0 ? subjects.map(s => <option key={s} value={s}>{s}</option>) : <option value="">No subjects found</option>}
+                                    <option value="">-- General / Auto-Detect --</option>
+                                </select>
+                            </div>
+                        )}
+
+                        <button
+                            onClick={handleUploadAndParse}
+                            disabled={loading || !selectedFile}
+                            style={{
+                                width: '100%',
+                                padding: '14px',
+                                background: 'var(--accent-primary)',
+                                color: 'white',
+                                borderRadius: '6px',
+                                fontWeight: 600,
+                                fontSize: '15px',
+                                border: 'none',
+                                cursor: (loading || !selectedFile) ? 'not-allowed' : 'pointer',
+                                opacity: (loading || !selectedFile) ? 0.7 : 1,
+                                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
+                                transition: 'background 0.2s'
+                            }}
+                        >
+                            {loading ? (
+                                <span>Processing...</span>
+                            ) : (
+                                <>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                    {uploadType === 'timetable' ? 'Parse Timetable' : 'Upload Resource'}
+                                </>
+                            )}
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {/* FOLDERS GRID (Only at Root) */}
+            {!currentFolder && subjects.length > 0 && (
+                <>
+                    <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px', color: 'var(--text-primary)' }}>Subjects</h2>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px', marginBottom: '32px' }}>
+                        {subjects.map(subject => {
+                            const count = files.filter(f => f.subject === subject).length;
+                            return (
+                                <div
+                                    key={subject}
+                                    onClick={() => setCurrentFolder(subject)}
+                                    style={{
+                                        position: 'relative',
+                                        background: 'var(--bg-secondary)',
+                                        border: '1px solid var(--glass-border)',
+                                        borderRadius: '12px',
+                                        padding: '20px',
+                                        cursor: 'pointer',
+                                        transition: 'transform 0.2s, box-shadow 0.2s',
+                                        display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center'
+                                    }}
+                                    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)'; }}
+                                    onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
+                                >
+                                    <div style={{
+                                        width: '48px', height: '48px', background: 'rgba(59, 130, 246, 0.1)',
+                                        color: '#3b82f6', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                        marginBottom: '12px'
+                                    }}>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                                    </div>
+                                    <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '4px' }}>{subject}</h3>
+                                    <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>{count} items</span>
+
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            if (confirm(`Delete subject "${subject}"? Files will remain but become uncategorized.`)) {
+                                                handleDeleteSubject(subject);
+                                            }
+                                        }}
+                                        style={{
+                                            position: 'absolute', top: '8px', right: '8px',
+                                            padding: '4px', borderRadius: '4px',
+                                            background: 'transparent', border: 'none', cursor: 'pointer',
+                                            color: 'var(--text-secondary)', opacity: 0.6
+                                        }}
+                                        onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+                                        onMouseLeave={(e) => e.currentTarget.style.opacity = '0.6'}
+                                    >
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                    </button>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </>
+            )}
 
             {/* Files List */}
-            <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px', color: 'var(--text-primary)' }}>Your Knowledge Base</h2>
+            <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px', color: 'var(--text-primary)' }}>
+                {currentFolder ? 'Files' : 'Uncategorized / Recent Files'}
+            </h2>
             <div style={{ display: 'grid', gap: '16px' }}>
-                {files.length === 0 ? (
-                    <div style={{ padding: '24px', textAlign: 'center', color: 'var(--text-muted)' }}>No files uploaded yet.</div>
+                {filteredFiles.length === 0 ? (
+                    <div style={{ padding: '24px', textAlign: 'center', color: 'var(--text-muted)' }}>
+                        {currentFolder ? 'No files in this subject folder.' : 'No files uploaded yet.'}
+                    </div>
                 ) : (
-                    files.map((file: any) => (
+                    filteredFiles.map((file: any) => (
                         <div key={file.id} style={{
                             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                             padding: '16px', background: 'var(--bg-secondary)',
