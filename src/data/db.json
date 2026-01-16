@@ -92,7 +92,15 @@
       "username": "lolludo44@gmail.com",
       "password": "",
       "name": "Sidharth Bharti",
-      "subjects": [],
+      "subjects": [
+        "University Time Table",
+        "MATHEMATICS-I",
+        "PROGRAMMING FUNDAMENTALS",
+        "BASIC ELECTRONICS & COMMUNICATION ENGINEERING",
+        "COMPUTER AIDED ENGINEERING GRAPHICS-2",
+        "WEB DESIGNING",
+        "AS SELECTED"
+      ],
       "files": [
         {
           "id": "aa4ceb58-c8e2-4b11-8992-5333413257c8",
@@ -103,8 +111,191 @@
           "uploadDate": "2026-01-16T15:56:31.552Z",
           "mediaId": "/uploads/1768578991546-WhatsApp_Image_2026-01-16_at_11.40.40_AM.jpeg",
           "parsed": false
+        },
+        {
+          "id": "2491ca59-7d74-4dc5-9ac2-2745f9b2d3f1",
+          "name": "WhatsApp Image 2026-01-16 at 11.40.40 AM.jpeg",
+          "size": 69915,
+          "type": "resource",
+          "subject": "University Time Table",
+          "uploadDate": "2026-01-16T20:46:11.298Z",
+          "mediaId": "/uploads/1768596371294-WhatsApp_Image_2026-01-16_at_11.40.40_AM.jpeg",
+          "parsed": false
+        },
+        {
+          "id": "e0083eee-3ebb-49cd-9afd-60b065be0bc6",
+          "name": "WhatsApp Image 2026-01-16 at 11.40.40 AM.jpeg",
+          "size": 69915,
+          "type": "timetable",
+          "subject": "Timetable (Analyzed)",
+          "uploadDate": "2026-01-16T20:46:33.005Z",
+          "mediaId": "/uploads/1768596393002-WhatsApp_Image_2026-01-16_at_11.40.40_AM.jpeg",
+          "parsed": true
+        },
+        {
+          "id": "4a9eac2d-0929-489c-9728-89804e90dd82",
+          "name": "WhatsApp Image 2026-01-16 at 11.38.57 AM.jpeg",
+          "size": 128429,
+          "type": "resource",
+          "subject": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING",
+          "uploadDate": "2026-01-16T20:47:12.551Z",
+          "mediaId": "/uploads/1768596432539-WhatsApp_Image_2026-01-16_at_11.38.57_AM.jpeg",
+          "parsed": false
         }
-      ]
+      ],
+      "timetable": {
+        "subjects": [
+          {
+            "name": "MATHEMATICS-I",
+            "classes": [
+              {
+                "day": "TUE",
+                "start_time": "12:00",
+                "end_time": "13:00",
+                "location": "PB-GF6 (Lecture)",
+                "subject": "MATHEMATICS-I"
+              },
+              {
+                "day": "TUE",
+                "start_time": "13:00",
+                "end_time": "14:00",
+                "location": "PB-GF6 (Tutorial Group 1)",
+                "subject": "MATHEMATICS-I"
+              },
+              {
+                "day": "TUE",
+                "start_time": "15:00",
+                "end_time": "16:00",
+                "location": "PB-GF6 (Tutorial Group 2)",
+                "subject": "MATHEMATICS-I"
+              },
+              {
+                "day": "WED",
+                "start_time": "09:00",
+                "end_time": "10:00",
+                "location": "Lecture",
+                "subject": "MATHEMATICS-I"
+              }
+            ]
+          },
+          {
+            "name": "PROGRAMMING FUNDAMENTALS",
+            "classes": [
+              {
+                "day": "MON",
+                "start_time": "13:00",
+                "end_time": "14:00",
+                "location": "Lecture",
+                "subject": "PROGRAMMING FUNDAMENTALS"
+              },
+              {
+                "day": "FRI",
+                "start_time": "13:00",
+                "end_time": "14:00",
+                "location": "Lecture",
+                "subject": "PROGRAMMING FUNDAMENTALS"
+              },
+              {
+                "day": "FRI",
+                "start_time": "14:00",
+                "end_time": "15:00",
+                "location": "LAB (Practical)",
+                "subject": "PROGRAMMING FUNDAMENTALS"
+              }
+            ]
+          },
+          {
+            "name": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING",
+            "classes": [
+              {
+                "day": "MON",
+                "start_time": "12:00",
+                "end_time": "13:00",
+                "location": "Lecture",
+                "subject": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING"
+              },
+              {
+                "day": "THU",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "location": "Lecture",
+                "subject": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING"
+              },
+              {
+                "day": "THU",
+                "start_time": "16:00",
+                "end_time": "17:00",
+                "location": "LAB (Practical)",
+                "subject": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING"
+              }
+            ]
+          },
+          {
+            "name": "COMPUTER AIDED ENGINEERING GRAPHICS-2",
+            "classes": [
+              {
+                "day": "MON",
+                "start_time": "08:00",
+                "end_time": "09:00",
+                "location": "LAB",
+                "subject": "COMPUTER AIDED ENGINEERING GRAPHICS-2"
+              },
+              {
+                "day": "MON",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "location": "Lecture",
+                "subject": "COMPUTER AIDED ENGINEERING GRAPHICS-2"
+              },
+              {
+                "day": "WED",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "location": "Lecture",
+                "subject": "COMPUTER AIDED ENGINEERING GRAPHICS-2"
+              }
+            ]
+          },
+          {
+            "name": "WEB DESIGNING",
+            "classes": [
+              {
+                "day": "TUE",
+                "start_time": "14:00",
+                "end_time": "15:00",
+                "location": "CS103",
+                "subject": "WEB DESIGNING"
+              },
+              {
+                "day": "THU",
+                "start_time": "14:00",
+                "end_time": "15:00",
+                "location": "CS-103 (Prog. Lab)",
+                "subject": "WEB DESIGNING"
+              }
+            ]
+          },
+          {
+            "name": "AS SELECTED",
+            "classes": [
+              {
+                "day": "TUE",
+                "start_time": "08:00",
+                "end_time": "09:00",
+                "location": "null",
+                "subject": "AS SELECTED"
+              },
+              {
+                "day": "THU",
+                "start_time": "08:00",
+                "end_time": "09:00",
+                "location": "null",
+                "subject": "AS SELECTED"
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 }
