@@ -207,10 +207,10 @@ export default function FilesPage() {
                             const listData = await listRes.json();
                             setFiles(listData.files);
 
-                            alert(`File uploaded and classified as: ${classifyData.subject}`);
+                            alert(`Success! '${data.file.name}' classified as: ${classifyData.subject}`);
                         } else {
                             addToLog(`⚠️ Classification failed: ${classifyData.message}`);
-                            alert("File uploaded but auto-classification failed.");
+                            // alert("File uploaded but auto-classification failed.");
                         }
                     } catch (e) {
                         console.error(e);
@@ -218,7 +218,8 @@ export default function FilesPage() {
                     }
                 } else {
                     // Manual Subject Selected
-                    alert("Uploaded successfully!");
+                    // alert("Uploaded successfully!");
+                    addToLog('✅ Upload Success.');
                     // Refresh List
                     const listRes = await fetch(`/api/files?username=${user.username}`);
                     const listData = await listRes.json();
@@ -448,7 +449,7 @@ export default function FilesPage() {
                         <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
                             {uploadType === 'timetable'
                                 ? 'Upload a file (PDF, PNG, JPG). The AI will parse it automatically.'
-                                : 'Upload notes. AI will automatically classify them into subjects.'}
+                                : 'Upload notes or slides. Select a subject to organize them.'}
                         </p>
                     </div>
 
@@ -469,6 +470,22 @@ export default function FilesPage() {
                                 style={{ flex: 1, color: 'inherit' }}
                             />
                         </div>
+
+                        {uploadType === 'resource' && (
+                            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                                <select
+                                    value={selectedSubject}
+                                    onChange={(e) => setSelectedSubject(e.target.value)}
+                                    style={{
+                                        padding: '12px', borderRadius: '6px', border: '1px solid var(--glass-border)',
+                                        background: 'var(--bg-tertiary)', color: 'var(--text-primary)', flex: 1
+                                    }}
+                                >
+                                    {subjects.length > 0 ? subjects.map(s => <option key={s} value={s} style={{ background: '#333' }}>{s}</option>) : <option value="" style={{ background: '#333' }}>No subjects found</option>}
+                                    <option value="" style={{ background: '#333' }}>-- General / Auto-Detect --</option>
+                                </select>
+                            </div>
+                        )}
 
 
                         <button
