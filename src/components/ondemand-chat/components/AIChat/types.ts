@@ -35,4 +35,5 @@ export interface ReactChatBotProps {
     botId: string;
     environment?: Environment;
     contextVariables?: contextVariables;
+    mode?: "overlay" | "embedded";
 }
