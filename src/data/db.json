@@ -1,0 +1,410 @@
+{
+  "users": [
+    {
+      "id": "user_1",
+      "username": "user 1",
+      "password": "12345",
+      "name": "Test Student",
+      "files": []
+    },
+    {
+      "id": "e701baa1-9c4a-4676-b0ae-93f3deb9bd18",
+      "username": "shdra",
+      "password": "12345",
+      "name": "shivendra",
+      "files": [
+        {
+          "id": "a1bc6971-2921-44ad-88d2-eaf73ce82748",
+          "name": "timetable cse 5.jpeg",
+          "size": 69915,
+          "type": "timetable",
+          "subject": "Timetable (Analyzed)",
+          "uploadDate": "2026-01-16T16:03:33.397Z",
+          "mediaId": "/uploads/1768579413383-timetable_cse_5.jpeg",
+          "parsed": true
+        },
+        {
+          "id": "be3cd692-920b-4561-bd69-fc7cf885e922",
+          "name": "3.jpg",
+          "size": 126456,
+          "type": "resource",
+          "subject": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING",
+          "uploadDate": "2026-01-16T16:04:31.835Z",
+          "mediaId": "/uploads/1768579471828-3.jpg",
+          "parsed": false
+        }
+      ],
+      "subjects": [
+        "MATHEMATICS-I",
+        "PROGRAMMING FUNDAMENTALS",
+        "BASIC ELECTRONICS & COMMUNICATION ENGINEERING",
+        "COMPUTER AIDED ENGINEERING GRAPHICS-2",
+        "WEB DESIGNING",
+        "AS SELECTED"
+      ],
+      "timetable": {
+        "subjects": [
+          {
+            "name": "MATHEMATICS-I",
+            "classes": [
+              {
+                "day": "TUE",
+                "start_time": "12:00",
+                "end_time": "13:00",
+                "location": "PB-GF6",
+                "subject": "MATHEMATICS-I"
+              },
+              {
+                "day": "TUE",
+                "start_time": "13:00",
+                "end_time": "14:00",
+                "location": "PB-GF6",
+                "subject": "MATHEMATICS-I"
+              },
+              {
+                "day": "WED",
+                "start_time": "09:00",
+                "end_time": "10:00",
+                "subject": "MATHEMATICS-I"
+              },
+              {
+                "day": "WED",
+                "start_time": "15:00",
+                "end_time": "16:00",
+                "location": "PB-GF6",
+                "subject": "MATHEMATICS-I"
+              }
+            ]
+          },
+          {
+            "name": "PROGRAMMING FUNDAMENTALS",
+            "classes": [
+              {
+                "day": "MON",
+                "start_time": "13:00",
+                "end_time": "14:00",
+                "subject": "PROGRAMMING FUNDAMENTALS"
+              },
+              {
+                "day": "FRI",
+                "start_time": "13:00",
+                "end_time": "14:00",
+                "subject": "PROGRAMMING FUNDAMENTALS"
+              },
+              {
+                "day": "FRI",
+                "start_time": "14:00",
+                "end_time": "15:00",
+                "location": "LAB",
+                "subject": "PROGRAMMING FUNDAMENTALS"
+              }
+            ]
+          },
+          {
+            "name": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING",
+            "classes": [
+              {
+                "day": "MON",
+                "start_time": "12:00",
+                "end_time": "13:00",
+                "subject": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING"
+              },
+              {
+                "day": "THU",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "subject": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING"
+              },
+              {
+                "day": "THU",
+                "start_time": "16:00",
+                "end_time": "17:00",
+                "location": "LAB",
+                "subject": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING"
+              }
+            ]
+          },
+          {
+            "name": "COMPUTER AIDED ENGINEERING GRAPHICS-2",
+            "classes": [
+              {
+                "day": "MON",
+                "start_time": "09:00",
+                "end_time": "10:00",
+                "location": "LAB",
+                "subject": "COMPUTER AIDED ENGINEERING GRAPHICS-2"
+              },
+              {
+                "day": "MON",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "subject": "COMPUTER AIDED ENGINEERING GRAPHICS-2"
+              },
+              {
+                "day": "WED",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "subject": "COMPUTER AIDED ENGINEERING GRAPHICS-2"
+              }
+            ]
+          },
+          {
+            "name": "WEB DESIGNING",
+            "classes": [
+              {
+                "day": "TUE",
+                "start_time": "14:00",
+                "end_time": "15:00",
+                "location": "CS103",
+                "subject": "WEB DESIGNING"
+              },
+              {
+                "day": "THU",
+                "start_time": "14:00",
+                "end_time": "15:00",
+                "location": "CS-103 [Prog. Lab]",
+                "subject": "WEB DESIGNING"
+              }
+            ]
+          },
+          {
+            "name": "AS SELECTED",
+            "classes": [
+              {
+                "day": "TUE",
+                "start_time": "09:00",
+                "end_time": "10:00",
+                "subject": "AS SELECTED"
+              },
+              {
+                "day": "THU",
+                "start_time": "09:00",
+                "end_time": "10:00",
+                "subject": "AS SELECTED"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "bbf420ec-f1dd-425d-bd3c-e0588b3d4626",
+      "username": "shdra1",
+      "password": "12345",
+      "name": "shdra",
+      "subjects": [
+        "MATHEMATICS-I",
+        "PROGRAMMING FUNDAMENTALS",
+        "BASIC ELECTRONICS & COMMUNICATION ENGINEERING",
+        "COMPUTER AIDED ENGINEERING GRAPHICS-2",
+        "WEB DESIGNING",
+        "AS SELECTED"
+      ],
+      "files": [
+        {
+          "id": "ceaf7add-046a-4543-a0d3-1c29c236ba62",
+          "name": "timetable cse 5.jpeg",
+          "size": 69915,
+          "type": "timetable",
+          "subject": "Pending Analysis",
+          "uploadDate": "2026-01-16T12:16:32.462Z",
+          "mediaId": "/uploads/1768565792454-timetable_cse_5.jpeg",
+          "parsed": false
+        },
+        {
+          "id": "c7c2a2d7-081f-4c26-9c6b-e21931dce125",
+          "name": "timetable cse 5.jpeg",
+          "size": 69915,
+          "type": "timetable",
+          "subject": "Pending Analysis",
+          "uploadDate": "2026-01-16T12:18:14.131Z",
+          "mediaId": "/uploads/1768565894121-timetable_cse_5.jpeg",
+          "parsed": false
+        },
+        {
+          "id": "fa56173a-fa22-4d01-843d-2bdab23266b1",
+          "name": "timetable cse 5.jpeg",
+          "size": 69915,
+          "type": "timetable",
+          "subject": "Pending Analysis",
+          "uploadDate": "2026-01-16T12:18:30.401Z",
+          "mediaId": "/uploads/1768565910394-timetable_cse_5.jpeg",
+          "parsed": false
+        },
+        {
+          "id": "e3602b21-dab2-48ba-b73e-30b0b0891c82",
+          "name": "timetable cse 5.jpeg",
+          "size": 69915,
+          "type": "timetable",
+          "subject": "Pending Analysis",
+          "uploadDate": "2026-01-16T12:19:04.741Z",
+          "mediaId": "/uploads/1768565944734-timetable_cse_5.jpeg",
+          "parsed": false
+        },
+        {
+          "id": "564d9238-65c3-41f5-885f-ddbdf1c0f767",
+          "name": "timetable cse 5.jpeg",
+          "size": 69915,
+          "type": "timetable",
+          "subject": "Timetable (Analyzed)",
+          "uploadDate": "2026-01-16T12:22:24.350Z",
+          "mediaId": "/uploads/1768566144341-timetable_cse_5.jpeg",
+          "parsed": true
+        }
+      ],
+      "timetable": {
+        "subjects": [
+          {
+            "name": "MATHEMATICS-I",
+            "classes": [
+              {
+                "day": "Tuesday",
+                "start_time": "12:00",
+                "end_time": "13:00",
+                "location": "PB-GF6",
+                "subject": "MATHEMATICS-I"
+              },
+              {
+                "day": "Tuesday",
+                "start_time": "13:00",
+                "end_time": "14:00",
+                "location": "PB-GF6",
+                "subject": "MATHEMATICS-I"
+              },
+              {
+                "day": "Tuesday",
+                "start_time": "15:00",
+                "end_time": "16:00",
+                "location": "PB-GF6",
+                "subject": "MATHEMATICS-I"
+              },
+              {
+                "day": "Wednesday",
+                "start_time": "09:00",
+                "end_time": "10:00",
+                "location": "PB-GF6",
+                "subject": "MATHEMATICS-I"
+              }
+            ]
+          },
+          {
+            "name": "PROGRAMMING FUNDAMENTALS",
+            "classes": [
+              {
+                "day": "Monday",
+                "start_time": "13:00",
+                "end_time": "14:00",
+                "location": "PB-GF6",
+                "subject": "PROGRAMMING FUNDAMENTALS"
+              },
+              {
+                "day": "Friday",
+                "start_time": "13:00",
+                "end_time": "14:00",
+                "location": "PB-GF6",
+                "subject": "PROGRAMMING FUNDAMENTALS"
+              },
+              {
+                "day": "Friday",
+                "start_time": "14:00",
+                "end_time": "15:00",
+                "location": "PB-GF6",
+                "subject": "PROGRAMMING FUNDAMENTALS"
+              }
+            ]
+          },
+          {
+            "name": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING",
+            "classes": [
+              {
+                "day": "Monday",
+                "start_time": "12:00",
+                "end_time": "13:00",
+                "location": "PB-GF6",
+                "subject": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING"
+              },
+              {
+                "day": "Thursday",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "location": "PB-GF6",
+                "subject": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING"
+              },
+              {
+                "day": "Thursday",
+                "start_time": "16:00",
+                "end_time": "17:00",
+                "location": "PB-GF6",
+                "subject": "BASIC ELECTRONICS & COMMUNICATION ENGINEERING"
+              }
+            ]
+          },
+          {
+            "name": "COMPUTER AIDED ENGINEERING GRAPHICS-2",
+            "classes": [
+              {
+                "day": "Monday",
+                "start_time": "09:00",
+                "end_time": "10:00",
+                "location": "PB-GF6",
+                "subject": "COMPUTER AIDED ENGINEERING GRAPHICS-2"
+              },
+              {
+                "day": "Monday",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "location": "PB-GF6",
+                "subject": "COMPUTER AIDED ENGINEERING GRAPHICS-2"
+              },
+              {
+                "day": "Wednesday",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "location": "PB-GF6",
+                "subject": "COMPUTER AIDED ENGINEERING GRAPHICS-2"
+              }
+            ]
+          },
+          {
+            "name": "WEB DESIGNING",
+            "classes": [
+              {
+                "day": "Tuesday",
+                "start_time": "14:00",
+                "end_time": "15:00",
+                "location": "PB-GF6",
+                "subject": "WEB DESIGNING"
+              },
+              {
+                "day": "Thursday",
+                "start_time": "14:00",
+                "end_time": "15:00",
+                "location": "[Prog. Lab]",
+                "subject": "WEB DESIGNING"
+              }
+            ]
+          },
+          {
+            "name": "AS SELECTED",
+            "classes": [
+              {
+                "day": "Tuesday",
+                "start_time": "08:00",
+                "end_time": "09:00",
+                "location": "PB-GF6",
+                "subject": "AS SELECTED"
+              },
+              {
+                "day": "Thursday",
+                "start_time": "08:00",
+                "end_time": "09:00",
+                "location": "PB-GF6",
+                "subject": "AS SELECTED"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
