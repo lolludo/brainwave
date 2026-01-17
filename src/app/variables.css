@@ -46,25 +46,35 @@
 }
 
 html[data-theme='light'] {
-  /* Core Colors - Light Academic Theme */
-  --bg-primary: #f4f4f5;
+  /* Core Colors - Clean Light Theme */
+  --bg-primary: #f8fafc;
+  /* Slate 50 - Cleaner than Zinc */
   --bg-secondary: #ffffff;
-  --bg-tertiary: #e4e4e7;
+  /* Pure White */
+  --bg-tertiary: #f1f5f9;
+  /* Slate 100 - Very subtle gray, not dirty */
 
-  --text-primary: #18181b;
-  --text-secondary: #52525b;
-  --text-muted: #71717a;
+  --text-primary: #0f172a;
+  /* Slate 900 - Deep, rich black */
+  --text-secondary: #475569;
+  /* Slate 600 - Readable secondary */
+  --text-muted: #94a3b8;
+  /* Slate 400 */
 
   --accent-primary: #7c3aed;
-  /* Slightly darker violet for contrast */
+  /* Violet 600 */
   --accent-secondary: #db2777;
-  /* Darker pink */
+  /* Pink 600 */
+  --accent-cyan: #0891b2;
+  /* Cyan 600 - Darker for visibility on light bg */
 
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(0, 0, 0, 0.05);
-  --glass-shine: rgba(255, 255, 255, 0.5);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  /* More opaque for cleaner look */
+  --glass-border: rgba(148, 163, 184, 0.2);
+  /* Subtle slate border */
+  --glass-shine: rgba(255, 255, 255, 1);
 
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }

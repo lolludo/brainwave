@@ -11,8 +11,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-    title: 'DTU Student Helper | Academic Intelligence',
-    description: 'AI-powered academic assistant for DTU students.',
+    title: 'Nexus AI | Academic Superintelligence',
+    description: 'Next-gen Education eXperience for University Students.',
 };
 
 export default function RootLayout({

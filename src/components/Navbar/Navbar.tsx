@@ -7,7 +7,7 @@ export default function Navbar() {
     return (
         <nav className={styles.navbar}>
             <Link href="/" className={styles.logo}>
-                DTU <span>Helper</span>
+                Nexus <span>AI</span>
             </Link>
 
             <div className={styles.actions}>

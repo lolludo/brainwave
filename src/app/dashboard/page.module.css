@@ -1,6 +1,8 @@
 .container {
     animation: fadeUp 0.6s ease-out;
     padding-bottom: 40px;
+    font-family: var(--font-sans);
+    /* Enforce font */
 }
 
 .header {

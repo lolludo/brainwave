@@ -123,7 +123,7 @@ export default function Dashboard() {
 
     const NOTICES = [
         { id: 1, title: 'Mid-Term Schedule Released', date: '2 hours ago', urgent: true },
-        { id: 2, title: 'Holiday on Friday (Republic Day)', date: '1 day ago', urgent: false },
+        { id: 2, title: 'Holiday', date: '1 day ago', urgent: false },
         { id: 3, title: 'Project Submission Deadline Extended', date: '2 days ago', urgent: false },
     ];
 

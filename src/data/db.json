@@ -251,265 +251,8 @@
       "username": "shdra06@gmail.com",
       "password": "",
       "name": "Shivendra Prasad",
-      "subjects": [
-        "MATHEMATICS-II",
-        "DISCRETE STRUCTURE",
-        "BASICS OF MACHINE LEARNING AND APPLICATIONS",
-        "DATA STRUCTURES",
-        "PHYSICS",
-        "AS SELECTED"
-      ],
+      "subjects": [],
       "files": [
-        {
-          "id": "a3eb3ed6-012b-42f4-ac96-f818562d5f70",
-          "name": "172782.jpeg",
-          "size": 73848,
-          "type": "timetable",
-          "subject": "Timetable (Analyzed)",
-          "uploadDate": "2026-01-16T21:17:24.210Z",
-          "mediaId": "/uploads/1768598244202-172782.jpeg",
-          "parsed": true
-        },
-        {
-          "id": "9186ec5c-23c8-45eb-8c4e-5a46b3450bbf",
-          "name": "timetable cse 5.jpeg",
-          "size": 69915,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T21:40:12.443Z",
-          "mediaId": "/uploads/1768599612435-timetable_cse_5.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "2ddd2e79-2af5-4feb-95dc-ac754142afd4",
-          "name": "timetable cse 5.jpeg",
-          "size": 69915,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T21:40:37.089Z",
-          "mediaId": "/uploads/1768599637083-timetable_cse_5.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "f1739cbc-518e-4a0e-a6d1-0cc3a6b20135",
-          "name": "timetable cse 5.jpeg",
-          "size": 69915,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T21:44:51.340Z",
-          "mediaId": "/uploads/1768599891336-timetable_cse_5.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "d8b7fb27-2df5-47e3-99ae-786822dce08c",
-          "name": "172782.jpeg",
-          "size": 73848,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T21:45:11.596Z",
-          "mediaId": "/uploads/1768599911593-172782.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "63a31e4b-5c96-439c-861f-d32c00bce68c",
-          "name": "172782.jpeg",
-          "size": 73848,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T21:46:25.427Z",
-          "mediaId": "/uploads/1768599985413-172782.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "ded2fc59-c5c2-4dd0-b4b6-1ab1ddca0a20",
-          "name": "172782.jpeg",
-          "size": 73848,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T21:47:13.704Z",
-          "mediaId": "/uploads/1768600033698-172782.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "75ac75c4-7830-4af6-8d17-8ff7f809807f",
-          "name": "172782.jpeg",
-          "size": 73848,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T21:47:38.044Z",
-          "mediaId": "/uploads/1768600058035-172782.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "b4cd19f4-9c3d-434f-bc1f-87990b70ac99",
-          "name": "172782.jpeg",
-          "size": 73848,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T21:50:54.815Z",
-          "mediaId": "/uploads/1768600254809-172782.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "b4ab1d03-5c07-4a48-a290-f16a134dc30a",
-          "name": "172782.jpeg",
-          "size": 73848,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T21:54:14.775Z",
-          "mediaId": "/uploads/1768600454772-172782.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "eeab0fb8-5683-49d1-a2d8-64be05251eee",
-          "name": "172782.jpeg",
-          "size": 73848,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T21:55:31.313Z",
-          "mediaId": "/uploads/1768600531307-172782.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "953ad0b4-7ce2-4df9-9359-0f54512ec6a6",
-          "name": "172782.jpeg",
-          "size": 73848,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T21:56:50.488Z",
-          "mediaId": "/uploads/1768600610481-172782.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "869543fc-45de-4cb8-8f68-6bb06b6e8138",
-          "name": "172782.jpeg",
-          "size": 73848,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T21:58:58.286Z",
-          "mediaId": "/uploads/1768600738280-172782.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "4417d7ca-7845-4e97-9f4e-5e6bb2f482d3",
-          "name": "172782.jpeg",
-          "size": 73848,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T22:00:05.631Z",
-          "mediaId": "/uploads/1768600805625-172782.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "a16d38ab-1710-4d3e-9a87-fce2d6888e71",
-          "name": "172782.jpeg",
-          "size": 73848,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T22:01:37.835Z",
-          "mediaId": "/uploads/1768600897825-172782.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "0c6ce838-8e4c-4508-a5ec-e583782680c4",
-          "name": "172782.jpeg",
-          "size": 73848,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T22:02:50.201Z",
-          "mediaId": "/uploads/1768600970194-172782.jpeg",
-          "parsed": true
-        },
-        {
-          "id": "c76251cd-fbfa-4302-a924-3d7df6dfe6a9",
-          "name": "Tutorial_1.pdf",
-          "size": 415097,
-          "type": "resource",
-          "subject": "PROGRAMMING FUNDAMENTALS",
-          "uploadDate": "2026-01-16T22:03:50.068Z",
-          "mediaId": "/uploads/1768601030061-Tutorial_1.pdf",
-          "parsed": false
-        },
-        {
-          "id": "b63113e0-ef99-4bef-b1f2-d7329d807a56",
-          "name": "172782.jpeg",
-          "size": 73848,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T22:06:17.776Z",
-          "mediaId": "/uploads/1768601177769-172782.jpeg",
-          "parsed": true
-        },
-        {
-          "id": "94cb7b69-5ad7-4045-83d6-4fa167d01f26",
-          "name": "newtimetable.jpeg",
-          "size": 49665,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T22:11:16.332Z",
-          "mediaId": "/uploads/1768601476325-newtimetable.jpeg",
-          "parsed": true
-        },
-        {
-          "id": "69a9b36f-21a4-4a75-a33e-464cb939a387",
-          "name": "newtimetable.jpeg",
-          "size": 49665,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T22:23:48.413Z",
-          "mediaId": "/uploads/1768602228406-newtimetable.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "59f898ff-371e-496b-97e0-ef06768a91b7",
-          "name": "newtimetable.jpeg",
-          "size": 49665,
-          "type": "timetable",
-          "subject": "Timetable (Analyzed)",
-          "uploadDate": "2026-01-16T22:27:25.337Z",
-          "mediaId": "/uploads/1768602445330-newtimetable.jpeg",
-          "parsed": true
-        },
-        {
-          "id": "bc68e762-bdf8-4b0a-9464-cf2e60cc20da",
-          "name": "newtimetable.jpeg",
-          "size": 49665,
-          "type": "timetable",
-          "subject": "Timetable (Analyzed)",
-          "uploadDate": "2026-01-16T22:30:42.867Z",
-          "mediaId": "/uploads/1768602642861-newtimetable.jpeg",
-          "parsed": true
-        },
-        {
-          "id": "ee481dff-8119-4b0d-8484-a15cd0030a91",
-          "name": "newtimetable.jpeg",
-          "size": 49665,
-          "type": "timetable",
-          "subject": "Timetable (Analyzed)",
-          "uploadDate": "2026-01-16T22:38:08.348Z",
-          "mediaId": "/uploads/1768603088340-newtimetable.jpeg",
-          "parsed": true
-        },
-        {
-          "id": "70009ff9-1850-4ed2-97e5-99f6664d3afc",
-          "name": "newtimetable.jpeg",
-          "size": 49665,
-          "type": "timetable",
-          "subject": "Pending Analysis",
-          "uploadDate": "2026-01-16T22:40:07.004Z",
-          "mediaId": "/uploads/1768603206999-newtimetable.jpeg",
-          "parsed": false
-        },
-        {
-          "id": "e4a8b097-e63c-4ffc-9b1d-766b63fa41ca",
-          "name": "newtimetable.jpeg",
-          "size": 49665,
-          "type": "timetable",
-          "subject": "Timetable (Analyzed)",
-          "uploadDate": "2026-01-16T22:46:11.008Z",
-          "mediaId": "/uploads/1768603570998-newtimetable.jpeg",
-          "parsed": true
-        },
         {
           "id": "f14654bc-7fca-4004-bba9-3a9550287e28",
           "name": "newtimetable.jpeg",
@@ -519,33 +262,43 @@
           "uploadDate": "2026-01-16T22:47:08.144Z",
           "mediaId": "/uploads/1768603628139-newtimetable.jpeg",
           "parsed": true
+        },
+        {
+          "id": "a7b43a6d-c07c-49f4-8506-a1ec3bdef571",
+          "name": "newtimetable.jpeg",
+          "size": 49665,
+          "type": "timetable",
+          "subject": "Timetable (Analyzed)",
+          "uploadDate": "2026-01-17T05:20:32.659Z",
+          "mediaId": "/uploads/1768627232652-newtimetable.jpeg",
+          "parsed": true
         }
       ],
       "timetable": {
         "subjects": [
           {
-            "name": "MATHEMATICS-II",
+            "name": "DATA STRUCTURES",
             "classes": [
               {
-                "day": "Monday",
-                "start_time": "15:00",
+                "day": "MON",
+                "start_time": "10:00",
+                "end_time": "11:00",
+                "location": "PBGF-6",
+                "subject": "DATA STRUCTURES"
+              },
+              {
+                "day": "WED",
+                "start_time": "10:00",
+                "end_time": "11:00",
+                "location": "PBGF-6",
+                "subject": "DATA STRUCTURES"
+              },
+              {
+                "day": "THU",
+                "start_time": "14:00",
                 "end_time": "16:00",
-                "location": "PB-GF5 G1/G2",
-                "subject": "AM102"
-              },
-              {
-                "day": "Tuesday",
-                "start_time": "12:00",
-                "end_time": "13:00",
-                "location": "PBGF-6",
-                "subject": "AM102"
-              },
-              {
-                "day": "Wednesday",
-                "start_time": "09:00",
-                "end_time": "10:00",
-                "location": "PBGF-6",
-                "subject": "AM102"
+                "location": "",
+                "subject": "DATA STRUCTURES"
               }
             ]
           },
@@ -553,25 +306,51 @@
             "name": "DISCRETE STRUCTURE",
             "classes": [
               {
-                "day": "Monday",
-                "start_time": "12:00",
-                "end_time": "13:00",
-                "location": "PBGF-6",
-                "subject": "CS102"
-              },
-              {
-                "day": "Wednesday",
-                "start_time": "15:00",
-                "end_time": "16:00",
-                "location": "PBGF-6",
-                "subject": "CS102"
-              },
-              {
-                "day": "Thursday",
+                "day": "MON",
                 "start_time": "11:00",
                 "end_time": "12:00",
                 "location": "PBGF-6",
-                "subject": "CS102"
+                "subject": "DISCRETE STRUCTURE"
+              },
+              {
+                "day": "WED",
+                "start_time": "15:00",
+                "end_time": "16:00",
+                "location": "PBGF-6",
+                "subject": "DISCRETE STRUCTURE"
+              },
+              {
+                "day": "THU",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "location": "PBGF-6",
+                "subject": "DISCRETE STRUCTURE"
+              }
+            ]
+          },
+          {
+            "name": "MATHEMATICS-II",
+            "classes": [
+              {
+                "day": "MON",
+                "start_time": "15:00",
+                "end_time": "16:00",
+                "location": "PB-GF5 G1/G2",
+                "subject": "MATHEMATICS-II"
+              },
+              {
+                "day": "TUE",
+                "start_time": "12:00",
+                "end_time": "13:00",
+                "location": "PBGF-6",
+                "subject": "MATHEMATICS-II"
+              },
+              {
+                "day": "WED",
+                "start_time": "09:00",
+                "end_time": "10:00",
+                "location": "PBGF-6",
+                "subject": "MATHEMATICS-II"
               }
             ]
           },
@@ -579,70 +358,18 @@
             "name": "BASICS OF MACHINE LEARNING AND APPLICATIONS",
             "classes": [
               {
-                "day": "Monday",
+                "day": "MON",
                 "start_time": "16:00",
                 "end_time": "18:00",
-                "location": "CS106 lab",
-                "subject": "SEC-1 (CS-106)"
+                "location": "",
+                "subject": "BASICS OF MACHINE LEARNING AND APPLICATIONS"
               },
               {
-                "day": "Tuesday",
+                "day": "TUE",
                 "start_time": "14:00",
                 "end_time": "15:00",
                 "location": "PBGF-6",
-                "subject": "SEC-1 (CS-106)"
-              }
-            ]
-          },
-          {
-            "name": "DATA STRUCTURES",
-            "classes": [
-              {
-                "day": "Monday",
-                "start_time": "11:00",
-                "end_time": "12:00",
-                "location": "PBGF-6",
-                "subject": "CS104"
-              },
-              {
-                "day": "Wednesday",
-                "start_time": "10:00",
-                "end_time": "11:00",
-                "location": "PBGF-6",
-                "subject": "CS104"
-              },
-              {
-                "day": "Thursday",
-                "start_time": "14:00",
-                "end_time": "17:00",
-                "location": "CS104 lab",
-                "subject": "CS104"
-              }
-            ]
-          },
-          {
-            "name": "PHYSICS",
-            "classes": [
-              {
-                "day": "Wednesday",
-                "start_time": "12:00",
-                "end_time": "13:00",
-                "location": "PBGF-6",
-                "subject": "AP102"
-              },
-              {
-                "day": "Friday",
-                "start_time": "12:00",
-                "end_time": "14:00",
-                "location": "PBGF-6",
-                "subject": "AP102"
-              },
-              {
-                "day": "Friday",
-                "start_time": "14:00",
-                "end_time": "17:00",
-                "location": "AP102 (P) LAB",
-                "subject": "AP102"
+                "subject": "BASICS OF MACHINE LEARNING AND APPLICATIONS"
               }
             ]
           },
@@ -650,18 +377,44 @@
             "name": "AS SELECTED",
             "classes": [
               {
-                "day": "Tuesday",
+                "day": "TUE",
                 "start_time": "08:00",
                 "end_time": "10:00",
-                "location": "null",
-                "subject": "AEC/VAC"
+                "location": "",
+                "subject": "AS SELECTED"
               },
               {
-                "day": "Thursday",
+                "day": "THU",
                 "start_time": "08:00",
                 "end_time": "10:00",
-                "location": "null",
-                "subject": "AEC/VAC"
+                "location": "",
+                "subject": "AS SELECTED"
+              }
+            ]
+          },
+          {
+            "name": "PHYSICS",
+            "classes": [
+              {
+                "day": "WED",
+                "start_time": "11:00",
+                "end_time": "12:00",
+                "location": "PBGF-6",
+                "subject": "PHYSICS"
+              },
+              {
+                "day": "FRI",
+                "start_time": "12:00",
+                "end_time": "13:00",
+                "location": "PBGF-6",
+                "subject": "PHYSICS"
+              },
+              {
+                "day": "FRI",
+                "start_time": "13:00",
+                "end_time": "15:00",
+                "location": "",
+                "subject": "PHYSICS"
               }
             ]
           },
@@ -669,10 +422,10 @@
             "name": "Zero hour",
             "classes": [
               {
-                "day": "Wednesday",
+                "day": "WED",
                 "start_time": "16:00",
                 "end_time": "18:00",
-                "location": "null",
+                "location": "",
                 "subject": "Zero hour"
               }
             ]
