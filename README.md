@@ -1,38 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NEXUS: Next-gen Education eXperience for University Students
 
-## Getting Started
+**"The Smart Centralized Brain for Your University Life"**
 
-First, run the development server:
+NEXUS is an intelligent, AI-powered platform designed to streamline the academic lives of university students (specifically tailored for DTU). It integrates multiple AI agents to handle scheduling, content organization, study planning, and real-time query resolution, creating a cohesive "smart brain" for students.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🧠 System Architecture & Workflow
+
+NEXUS utilizes a hybrid AI architecture, leveraging **Google Gemini** for high-precision document analysis and **OnDemand** for specialized media processing and conversational agents.
+
+```mermaid
+graph TD
+    User[Student] --> Dashboard[State-of-the-Art Dashboard]
+    
+    Dashboard --> |Upload Timetable| Gemini[Gemini 1.5 Pro Agent]
+    Gemini --> |Extracts| Subjects[Subjects List]
+    Gemini --> |Extracts| Schedule[Class Schedule]
+    
+    Dashboard --> |Upload Notes| Classifier[Genkit Classification Agent]
+    Classifier --> |Checks Subjects| Subjects
+    Classifier --> |Sorts Files| FileSystem[Smart File Organizer]
+    
+    Dashboard --> |Paste YouTube URL| MediaAPI[OnDemand Media API]
+    MediaAPI --> |Transcribes| Transcript[Video Transcript]
+    Transcript --> |Context| ChatAPI[OnDemand Chat & Reasoning Agent]
+    
+    Dashboard --> |Ask Query| Bot[DTU Smart Bot (OnDemand)]
+    Bot --> |Retrieves| Knowledge[Community & Official Data]
+    
+    Dashboard --> |Track| Attendance[Auto Attendance Tracker]
+    Attendance --> |Calculates| Stats[Attendance %]
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Key Features & AI Integration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Smart Timetable Scanner (Powered by Gemini)
+- **What it does:** Users upload an image of their college timetable.
+- **How it works:** A specialized **Genkit Flow** (`timetable-analysis`) uses **Google Gemini 1.5 Pro** to visually scan the image, extracting:
+    - Subject Names (e.g., "Computer Networks", "DBMS")
+    - Exact Class Schedules (Day, Time, Location)
+- **Benefit:** Eliminates manual entry. Instantly populates the **Daily Planner** and **Attendance Tracker**.
 
-## Learn More
+### 2. Intelligent Auto-Classification
+- **What it does:** When you upload scattered notes (PDFs, images, handwritten pages), NEXUS automatically files them into the correct subject folder.
+- **How it works:** The **Classification Agent** reads the document content, compares it against your parsed `Subjects List`, and moves the file to the appropriate directory (e.g., `Notes/DBMS/Unit1.pdf`).
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Media Analysis (Powered by OnDemand)
+- **What it does:** Watch less, learn more. Paste a YouTube lecture link, and NEXUS extracts the knowledge for you.
+- **flow:**
+    1.  **Ingestion:** YouTube Video $\rightarrow$ **OnDemand Media API** (`plugin-1713961903`).
+    2.  **Processing:** Video is transcribed into text asynchronously.
+    3.  **Reasoning:** The transcript is fed into the **OnDemand Chat API**, allowing you to ask specific questions ("Is backpropagation explained?") and get factual YES/NO answers with evidence.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. DTU Smart Bot (Personalized Agent)
+- **What it does:** A specialized chatbot tuned for DTU (Delhi Technological University) students.
+- **Tech Stack:** **OnDemand Chat Widget** (Bot ID: `6969fd7c...`).
+- **Context Awareness:** It is injected with real-time context about the student:
+    - Current CGPA
+    - Attendance Shortfalls
+    - Upcoming Exams
+- **Capabilities:** Can answer queries using a knowledge base of verified university info.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 5. Smart Planners & Trackers
+- **Daily Planner:** Auto-generates your day's plan based on the parsed schedule + study backlog.
+- **Attendance Tracker:** Linked directly to the subject list. Updates percentages in real-time as you mark classes. Provides "Bunk" alerts if attendance drops below 75%.
+- **Study Planner:** Generates custom schedules for upcoming exams using AI to verify syllabus coverage.
 
-## Deploy on Vercel
+### 6. Utility AI Tools
+- **AI Summarizer:** Condenses long research papers or notes into digestible summaries.
+- **Quiz Generator:** Creates dynamic quizzes based on your specific subjects to test knowledge retention.
+- **CGPA Calculator:** Smart projection of your grades.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠️ Technology Stack
 
-//////////////////////////////
+| Component | Technology | Role |
+| :--- | :--- | :--- |
+| **Frontend** | **Next.js 15** | Component-based UI, Server Actions, App Router |
+| **Styling** | **Glassmorphism CSS** | Premium, modern aesthetic |
+| **Auth** | **Auth0** | Secure user authentication |
+| **AI (Vision/Text)**| **Google Gemini (via Genkit)** | Timetable OCR, File Classification |
+| **AI (Media/Chat)**| **OnDemand APIs** | Video Transcription, Conversational Agents |
+| **Database** | **JSON / Local Storage** | Fast, local-first data persistence |
+
+---
+
+## 📦 Installation
+
+1.  **Clone the Repository**
+    ```bash
+    git clone https://github.com/your-repo/brainwave.git
+    cd brainwave
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    npm install
+    ```
+
+4.  **Run Development Server**
+    ```bash
+    npm run dev
+    ```
+
+---
+
+## 🌟 Why NEXUS?
+
+NEXUS isn't just a tool; it's a **Smart Operating System** for your academic life. By connecting your schedule, notes, videos, and queries into one central "Brain," it removes the administrative friction of being a student, letting you focus purely on learning.
