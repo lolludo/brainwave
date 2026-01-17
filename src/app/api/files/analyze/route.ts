@@ -4,6 +4,7 @@ import { readFile } from 'fs/promises';
 import { join } from 'path';
 import { parseTimetable } from '@/ai/flows/timetable-parsing';
 import { STATIC_SUBJECTS } from '@/lib/constants';
+import fs from 'fs';
 
 export async function POST(req: Request) {
     try {
@@ -11,11 +12,14 @@ export async function POST(req: Request) {
 
         // 1. Get File Record
         const db = getDb();
-        const user = db.users.find(u => u.username === username);
-        if (!user) return NextResponse.json({ success: false, message: "User not found" }, { status: 404 });
+        const userIndex = db.users.findIndex(u => u.username === username);
+        if (userIndex === -1) return NextResponse.json({ success: false, message: "User not found" }, { status: 404 });
 
-        const fileRecord = user.files.find(f => f.id === fileId);
-        if (!fileRecord) return NextResponse.json({ success: false, message: "File not found" }, { status: 404 });
+        const user = db.users[userIndex];
+        const fileIndex = user.files.findIndex(f => f.id === fileId);
+
+        if (fileIndex === -1) return NextResponse.json({ success: false, message: "File not found" }, { status: 404 });
+        const fileRecord = user.files[fileIndex];
 
         // 2. Resolve Local Path
         const relativePath = fileRecord.mediaId?.replace('/uploads/', '') || "";
@@ -34,41 +38,26 @@ export async function POST(req: Request) {
 
         // 4. Call Genkit Flow (Gemini Direct)
         console.log(`Analyzing timetable with Gemini: ${fileRecord.name}`);
-        const result = await analyzeTimetable({
-            fileDataUri: base64Data
-        });
 
-        // 5. Update DB
-        if (result.subjects) {
-            user.subjects = [...new Set([...user.subjects, ...result.subjects])];
-        }
-
-        // 2. Run Genkit Flow
-        console.log("Starting Genkit Analysis...");
         try {
-            const result = await parseTimetable({ fileDataUri: base64Data }); // Call the flow directly
+            const result = await parseTimetable({ fileDataUri: base64Data });
 
             if (result && result.subjects) {
-                // Update User
+                // Update User Timetable
                 user.timetable = result;
 
                 const extractedSubjects = result.subjects.map((s: any) => s.name);
 
-                // Logic to REPLACE the static subjects if they are the only ones present
-                const currentSubjects = user.subjects || [];
-                const isOnlyStatic = currentSubjects.length === STATIC_SUBJECTS.length &&
-                    currentSubjects.every(val => STATIC_SUBJECTS.includes(val));
-
-                if (isOnlyStatic) {
-                    user.subjects = extractedSubjects;
-                } else {
-                    user.subjects = Array.from(new Set([...currentSubjects, ...extractedSubjects]));
-                }
+                console.log("Applying Strict Replace for subjects:", extractedSubjects);
+                // Strict Replace Logic (User Mode):
+                // We strictly replace the subject list with the new timetable's subjects.
+                user.subjects = extractedSubjects;
 
                 // Update File Status
                 user.files[fileIndex].subject = 'Timetable (Analyzed)';
                 user.files[fileIndex].parsed = true;
 
+                // Save to DB
                 db.users[userIndex] = user;
                 saveDb(db);
 
@@ -80,27 +69,13 @@ export async function POST(req: Request) {
             } else {
                 throw new Error("Empty result from Genkit");
             }
-
         } catch (genkitError: any) {
             console.error("Genkit Error:", genkitError);
             return NextResponse.json({
                 success: false,
-                message: `AI Analysis Failed: ${genkitError.message || 'Unknown error'}. Did you set GEMINI_API_KEY?`
+                message: `AI Analysis Failed: ${genkitError.message || 'Unknown error'}. Did you set GOOGLE_API_KEY?`
             }, { status: 500 });
         }
-
-        fileRecord.parsed = true;
-
-        // Save
-        const userIdx = db.users.findIndex(u => u.username === username);
-        db.users[userIdx] = user;
-        saveDb(db);
-
-        return NextResponse.json({
-            success: true,
-            subjects: result.subjects,
-            schedule: result.schedule
-        });
 
     } catch (e: any) {
         console.error("Analysis Error:", e);
