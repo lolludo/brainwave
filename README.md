@@ -11,7 +11,6 @@ NEXUS is an intelligent, AI-powered platform designed to streamline the academic
 NEXUS utilizes a hybrid AI architecture, leveraging **Google Gemini** for high-precision document analysis and **OnDemand** for specialized media processing and conversational agents.
 
 ```mermaid
-```mermaid
 graph TD
     User[Student] --> Dashboard[Unified NEXUS Dashboard]
 
@@ -54,16 +53,8 @@ graph TD
     Bot --> |Retrieves| Knowledge[DTU Official & Community Data]
     Knowledge --> Reasoning[OnDemand Chat & Reasoning Agent]
 
-    %% ---------- OUTPUT ----------
-    Report --> Dashboard
-    StudyPlan --> Dashboard
-    QuizSet --> Dashboard
-    Summary --> Dashboard
-    Reasoning --> Dashboard
-
 ```
 
-```
 
 ---
 
