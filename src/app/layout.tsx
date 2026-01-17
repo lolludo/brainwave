@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { Auth0ProviderWithNavigate } from '@/auth/Auth0ProviderWithNavigate';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 const inter = Inter({
     subsets: ['latin'],
@@ -23,7 +24,9 @@ export default function RootLayout({
         <html lang="en">
             <body className={inter.variable}>
                 <Auth0ProviderWithNavigate>
-                    {children}
+                    <ThemeProvider>
+                        {children}
+                    </ThemeProvider>
                 </Auth0ProviderWithNavigate>
             </body>
         </html>

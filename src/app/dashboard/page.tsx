@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth0 } from '@auth0/auth0-react';
 import { STATIC_SUBJECTS } from '@/lib/constants';
+import styles from './page.module.css';
 
 export default function Dashboard() {
     const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
@@ -118,11 +119,7 @@ export default function Dashboard() {
         return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: 'var(--text-secondary)' }}>Loading...</div>;
     }
 
-    const quickStats = [
-        { label: 'Current Semester', value: '6th' },
-        { label: 'Files Tracked', value: '12' },
-        { label: 'Pending Tasks', value: '3' },
-    ];
+
 
     const NOTICES = [
         { id: 1, title: 'Mid-Term Schedule Released', date: '2 hours ago', urgent: true },
@@ -140,13 +137,13 @@ export default function Dashboard() {
     };
 
     return (
-        <div style={{ animation: 'fadeUp 0.6s ease-out' }}>
-            <header style={{ marginBottom: '32px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+        <div className={styles.container}>
+            <header className={styles.header}>
                 <div>
-                    <h1 style={{ fontSize: '32px', fontWeight: 'bold' }}>
-                        Hello, <span style={{ color: 'var(--accent-primary)' }}>{user.name}</span>
+                    <h1 className={styles.welcomeHeading}>
+                        Hello, <span className={styles.userName}>{user.name}</span>
                     </h1>
-                    <p style={{ color: 'var(--text-secondary)', marginTop: '8px' }}>
+                    <p className={styles.subtitle}>
                         Here is what's happening today.
                     </p>
                 </div>
@@ -154,15 +151,7 @@ export default function Dashboard() {
                 <button
                     onClick={fetchAdvice}
                     disabled={loadingAdvice}
-                    style={{
-                        padding: '12px 24px',
-                        background: 'linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%)',
-                        color: 'white', border: 'none', borderRadius: '12px',
-                        fontWeight: 'bold', cursor: loadingAdvice ? 'not-allowed' : 'pointer',
-                        opacity: loadingAdvice ? 0.7 : 1,
-                        display: 'flex', alignItems: 'center', gap: '8px',
-                        boxShadow: '0 4px 15px rgba(59, 130, 246, 0.4)'
-                    }}
+                    className={styles.adviceBtn}
                 >
                     {loadingAdvice ? (
                         <>
@@ -178,22 +167,8 @@ export default function Dashboard() {
 
             {/* AI Advisor Modal */}
             {showAdviceModal && advice && (
-                <div style={{
-                    position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
-                    background: 'rgba(0, 0, 0, 0.6)', backdropFilter: 'blur(5px)',
-                    display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000,
-                    animation: 'fadeIn 0.3s ease-out'
-                }}>
-                    <div style={{
-                        background: 'var(--bg-secondary)',
-                        border: `1px solid ${getAdviceColor(advice.primary_advice)}`,
-                        borderRadius: '24px',
-                        padding: '40px',
-                        width: '90%', maxWidth: '600px',
-                        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
-                        position: 'relative',
-                        animation: 'scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-                    }}>
+                <div className={styles.modalOverlay}>
+                    <div className={styles.modal} style={{ border: `1px solid ${getAdviceColor(advice.primary_advice)}` }}>
                         <button
                             onClick={() => setShowAdviceModal(false)}
                             style={{
@@ -248,62 +223,20 @@ export default function Dashboard() {
                 </div>
             )}
 
-            {/* Quick Stats Grid */}
-            <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                gap: '24px',
-                marginBottom: '32px'
-            }}>
-                {quickStats.map((stat) => (
-                    <div key={stat.label} style={{
-                        background: 'var(--glass-bg)',
-                        border: '1px solid var(--glass-border)',
-                        borderRadius: 'var(--radius-lg)',
-                        padding: '24px',
-                        backdropFilter: 'blur(10px)'
-                    }}>
-                        <div style={{ color: 'var(--text-secondary)', fontSize: '14px', marginBottom: '8px' }}>
-                            {stat.label}
-                        </div>
-                        <div style={{ fontSize: '24px', fontWeight: 'bold', color: 'var(--text-primary)' }}>
-                            {stat.value}
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            {/* Main Content Grid: 3 Columns on large screens */}
-            <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                gap: '24px'
-            }}>
+            {/* Main Content Grid */}
+            <div className={styles.mainGrid}>
                 {/* 1. Upcoming Classes */}
-                <div style={{
-                    background: 'var(--bg-secondary)',
-                    border: '1px solid var(--glass-border)',
-                    borderRadius: 'var(--radius-lg)',
-                    padding: '24px',
-                    display: 'flex', flexDirection: 'column'
-                }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                        <h2 style={{ fontSize: '18px', fontWeight: 'bold' }}>Upcoming Classes</h2>
-                        <button onClick={() => router.push('/dashboard/timetable')} style={{ color: 'var(--accent-primary)', background: 'none', border: 'none', cursor: 'pointer', fontSize: '14px' }}>View All</button>
+                <div className={styles.card}>
+                    <div className={styles.cardHeader}>
+                        <h2 className={styles.cardTitle}>Upcoming Classes</h2>
+                        <button onClick={() => router.push('/dashboard/timetable')} className={styles.viewAllBtn}>View All</button>
                     </div>
 
                     {nextClasses.length > 0 ? (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                        <div className={styles.classList}>
                             {nextClasses.map((cls, idx) => (
-                                <div key={idx} style={{
-                                    display: 'flex', alignItems: 'center', gap: '16px',
-                                    padding: '12px', background: 'var(--bg-tertiary)', borderRadius: '12px'
-                                }}>
-                                    <div style={{
-                                        minWidth: '60px', textAlign: 'center',
-                                        padding: '8px', background: 'var(--glass-bg)', borderRadius: '8px',
-                                        border: '1px solid var(--glass-border)'
-                                    }}>
+                                <div key={idx} className={styles.classItem}>
+                                    <div className={styles.timeBox}>
                                         <div style={{ fontSize: '12px', fontWeight: 'bold' }}>{cls.start_time}</div>
                                         <div style={{ fontSize: '10px', color: 'var(--text-secondary)' }}>{cls.location || 'TBA'}</div>
                                     </div>
@@ -322,19 +255,14 @@ export default function Dashboard() {
                 </div>
 
                 {/* 2. Notice Board */}
-                <div style={{
-                    background: 'var(--bg-secondary)',
-                    border: '1px solid var(--glass-border)',
-                    borderRadius: 'var(--radius-lg)',
-                    padding: '24px',
-                }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                        <h2 style={{ fontSize: '18px', fontWeight: 'bold' }}>Notice Board</h2>
+                <div className={styles.card}>
+                    <div className={styles.cardHeader}>
+                        <h2 className={styles.cardTitle}>Notice Board</h2>
                         <span style={{ fontSize: '12px', background: 'var(--accent-primary)', color: 'white', padding: '2px 8px', borderRadius: '10px' }}>New</span>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                         {NOTICES.map(notice => (
-                            <div key={notice.id} style={{ borderLeft: `3px solid ${notice.urgent ? 'var(--error)' : 'var(--text-secondary)'}`, paddingLeft: '12px' }}>
+                            <div key={notice.id} className={styles.noticeItem} style={{ borderLeft: `3px solid ${notice.urgent ? 'var(--error)' : 'var(--text-secondary)'}` }}>
                                 <div style={{ fontSize: '14px', fontWeight: 500, marginBottom: '4px' }}>{notice.title}</div>
                                 <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{notice.date}</div>
                             </div>
@@ -347,26 +275,14 @@ export default function Dashboard() {
                     {/* AI Card */}
                     <div
                         onClick={() => router.push('/dashboard/chat')}
-                        style={{
-                            background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
-                            borderRadius: 'var(--radius-lg)',
-                            padding: '24px',
-                            color: 'white',
-                            cursor: 'pointer',
-                            position: 'relative',
-                            overflow: 'hidden',
-                            boxShadow: '0 10px 25px -5px rgba(59, 130, 246, 0.5)'
-                        }}
+                        className={styles.aiCard}
                     >
                         <div style={{ position: 'relative', zIndex: 1 }}>
                             <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px' }}>Ask AI Helper</h2>
                             <p style={{ fontSize: '14px', opacity: 0.9, marginBottom: '16px' }}>
                                 Need help with assignments or finding files? Chat now.
                             </p>
-                            <button style={{
-                                background: 'white', color: '#3b82f6', border: 'none',
-                                padding: '8px 16px', borderRadius: '20px', fontWeight: 600, fontSize: '12px', cursor: 'pointer'
-                            }}>
+                            <button className={styles.openChatBtn}>
                                 Open Chat
                             </button>
                         </div>
@@ -379,13 +295,7 @@ export default function Dashboard() {
                     </div>
 
                     {/* System Status (Condensed) */}
-                    <div style={{
-                        background: 'rgba(59, 130, 246, 0.05)',
-                        border: '1px solid rgba(59, 130, 246, 0.1)',
-                        borderRadius: 'var(--radius-lg)',
-                        padding: '24px',
-                        flex: 1
-                    }}>
+                    <div className={styles.systemStatus}>
                         <h2 style={{ fontSize: '16px', marginBottom: '12px', color: 'var(--accent-primary)' }}>System Status</h2>
                         <div style={{ fontSize: '13px', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
