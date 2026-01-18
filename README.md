@@ -16,8 +16,8 @@ graph TD
 
     %% ---------- INGESTION LAYER ----------
     Dashboard --> |Upload Timetable| vision[custom Agent]
-    Timetable Agent --> |Extracts| Subjects[Subjects List]
-    Timetable Agent --> |Extracts| Schedule[Class Schedule]
+    TimetableAgent --> |Extracts| Subjects[Subjects List]
+    TimetableAgent --> |Extracts| Schedule[Class Schedule]
 
     Dashboard --> |Upload Notes| Classifier[custom Agent]
     Classifier --> |Matches Subjects| Subjects
