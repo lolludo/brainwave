@@ -15,11 +15,11 @@ graph TD
     User[Student] --> Dashboard[Unified NEXUS Dashboard]
 
     %% ---------- INGESTION LAYER ----------
-    Dashboard --> |Upload Timetable| Gemini[Gemini 1.5 Pro Agent]
+    Dashboard --> |Upload Timetable| vision[custom Agent]
     Gemini --> |Extracts| Subjects[Subjects List]
     Gemini --> |Extracts| Schedule[Class Schedule]
 
-    Dashboard --> |Upload Notes| Classifier[Genkit Classification Agent]
+    Dashboard --> |Upload Notes| Classifier[custom Agent]
     Classifier --> |Matches Subjects| Subjects
     Classifier --> |Sorts Files| FileSystem[Smart File Organizer]
 
@@ -60,9 +60,9 @@ graph TD
 
 ## 🚀 Key Features & AI Integration
 
-### 1. Smart Timetable Scanner (Powered by Gemini)
+### 1. Smart Timetable Scanner (Powered by onDemand)
 - **What it does:** Users upload an image of their college timetable.
-- **How it works:** A specialized **Genkit Flow** (`timetable-analysis`) uses **Google Gemini 1.5 Pro** to visually scan the image, extracting:
+- **How it works:** A specialized **file anylazer** (`timetable-analysis`) uses **vision** to visually scan the image, extracting:
     - Subject Names (e.g., "Computer Networks", "DBMS")
     - Exact Class Schedules (Day, Time, Location)
 - **Benefit:** Eliminates manual entry. Instantly populates the **Daily Planner** and **Attendance Tracker**.
